@@ -1,25 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philos_infos.h                                     :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 14:43:21 by jmaia             #+#    #+#             */
-/*   Updated: 2022/02/08 16:54:03 by jmaia            ###   ########.fr       */
+/*   Created: 2021/12/03 12:40:09 by jmaia             #+#    #+#             */
+/*   Updated: 2021/12/06 18:01:34 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOS_INFOS_H
-# define PHILOS_INFOS_H
-
-typedef struct s_philos_infos
+int	ft_isspace(char c)
 {
-	int	n_philos;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	n_meals;
-}	t_philos_infos;
-
-#endif
+	return ((c >= '\t' && c <= '\r') || c == ' ');
+}

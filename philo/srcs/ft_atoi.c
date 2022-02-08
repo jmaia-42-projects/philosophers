@@ -1,25 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philos_infos.h                                     :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 14:43:21 by jmaia             #+#    #+#             */
-/*   Updated: 2022/02/08 16:54:03 by jmaia            ###   ########.fr       */
+/*   Created: 2021/11/23 09:23:14 by jmaia             #+#    #+#             */
+/*   Updated: 2022/02/08 16:57:31 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOS_INFOS_H
-# define PHILOS_INFOS_H
+#include "it_is_not_libft_hoho.h"
 
-typedef struct s_philos_infos
+int	ft_atoi(const char *nptr)
 {
-	int	n_philos;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	n_meals;
-}	t_philos_infos;
+	char	*cur;
+	int		result;
+	int		sign;
+	int		digit;
 
-#endif
+	result = 0;
+	cur = (char *)nptr;
+	sign = 0;
+	while (ft_isspace(*cur))
+		cur++;
+	if (*cur == '+' || *cur == '-')
+	{
+		sign = *cur == '-';
+		cur++;
+	}
+	while (ft_isdigit(*cur))
+	{
+		digit = *cur - '0';
+		result = result * 10 + digit;
+		cur++;
+	}
+	return (result * (-2 * sign + 1));
+}

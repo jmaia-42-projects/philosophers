@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philos_infos.h                                     :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 14:43:21 by jmaia             #+#    #+#             */
-/*   Updated: 2022/02/08 16:54:03 by jmaia            ###   ########.fr       */
+/*   Created: 2021/11/24 14:44:22 by jmaia             #+#    #+#             */
+/*   Updated: 2022/02/08 17:02:31 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOS_INFOS_H
-# define PHILOS_INFOS_H
+#include "it_is_not_libft_hoho.h"
 
-typedef struct s_philos_infos
+unsigned char	*ft_itoa(long long nbr)
 {
-	int	n_philos;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	n_meals;
-}	t_philos_infos;
-
-#endif
+	return (ft_itoa_base(nbr, "0123456789"));
+}
