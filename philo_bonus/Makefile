@@ -1,4 +1,4 @@
-NAME		=	
+NAME		=	philo_bonus
 
 _SRCS		=	
 SRCS		=	$(addprefix srcs/, $(_SRCS))
