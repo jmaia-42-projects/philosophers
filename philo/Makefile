@@ -1,6 +1,9 @@
 NAME		=	philo
 
-SRCS		=	main.c parse_args.c
+SRCS		=	ft_strlen.c \
+				main.c \
+				parse_args.c \
+				philosophize.c
 
 _OBJS		=	${SRCS:.c=.o}
 OBJS		=	$(addprefix build/, $(_OBJS))
@@ -8,7 +11,7 @@ OBJS		=	$(addprefix build/, $(_OBJS))
 CC			=	cc
 CFLAGS		=	-Wall -Werror -Wextra
 INCLUDE		=	-I includes/
-LIBS		=	
+LIBS		=
 
 
 all		:	$(NAME)
@@ -19,11 +22,12 @@ build/%.o	:	srcs/%.c
 	fi
 	$(CC) ${CFLAGS} ${INCLUDE} -c $< -o $@
 
-$(NAME)	:	libs $(OBJS)
+$(NAME)	:	$(OBJS) | libs
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 libs	:
 	@for lib in $(LIBS); do\
+		echo make -C $$(dirname $$lib);\
 		make -C $$(dirname $$lib);\
 	done
 
@@ -32,6 +36,7 @@ clean	:
 
 cleanlibs	:
 	@for lib in $(LIBS); do\
+		echo make -C $$(dirname $$lib) clean;\
 		make -C $$(dirname $$lib) clean;\
 	done
 
@@ -43,6 +48,7 @@ fclean	:	clean
 
 fcleanlibs	:
 	@for lib in $(LIBS); do\
+		echo make -C $$(dirname $$lib) fclean;\
 		make -C $$(dirname $$lib) fclean;\
 	done
 
