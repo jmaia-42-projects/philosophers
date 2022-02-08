@@ -1,7 +1,6 @@
 NAME		=	philo
 
-_SRCS		=	main.c
-SRCS		=	$(addprefix srcs/, $(_SRCS))
+SRCS		=	main.c
 
 OBJS		=	${SRCS:.c=.o}
 
@@ -19,12 +18,12 @@ build/%.o	:	srcs/%.c
 	fi
 	$(CC) ${CFLAGS} ${INCLUDE} -c $< -o $@
 
-$(NAME)	:	$(addprefix build/,${OBJS}) libs
+$(NAME)	:	libs $(addprefix build/,${OBJS})
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 libs	:
 	@for lib in $(LIBS); do\
-		make -C $((dirname $$lib);\
+		make -C $$(dirname $$lib);\
 	done
 
 clean	:	
@@ -32,7 +31,7 @@ clean	:
 
 cleanlibs	:
 	@for lib in $(LIBS); do\
-		make -C $((dirname $$lib) clean;\
+		make -C $$(dirname $$lib) clean;\
 	done
 
 cleanall	:	clean cleanlibs
@@ -43,7 +42,7 @@ fclean	:	clean
 
 fcleanlibs	:
 	@for lib in $(LIBS); do\
-		make -C $((dirname $$lib) fclean;\
+		make -C $$(dirname $$lib) fclean;\
 	done
 
 fcleanall	:	fclean fcleanlibs
