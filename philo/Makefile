@@ -1,13 +1,14 @@
 NAME		=	philo
 
-SRCS		=	main.c
+SRCS		=	main.c parse_args.c
 
-OBJS		=	${SRCS:.c=.o}
+_OBJS		=	${SRCS:.c=.o}
+OBJS		=	$(addprefix build/, $(_OBJS))
 
 CC			=	cc
 CFLAGS		=	-Wall -Werror -Wextra
 INCLUDE		=	-I includes/
-LIBS		=	pouet/pouetouille/hey.a
+LIBS		=	
 
 
 all		:	$(NAME)
@@ -18,7 +19,7 @@ build/%.o	:	srcs/%.c
 	fi
 	$(CC) ${CFLAGS} ${INCLUDE} -c $< -o $@
 
-$(NAME)	:	libs $(addprefix build/,${OBJS})
+$(NAME)	:	libs $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 libs	:

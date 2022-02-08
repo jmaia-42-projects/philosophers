@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parse_args.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 12:47:04 by jmaia             #+#    #+#             */
-/*   Updated: 2022/02/08 14:46:30 by jmaia            ###   ########.fr       */
+/*   Created: 2022/02/08 14:39:16 by jmaia             #+#    #+#             */
+/*   Updated: 2022/02/08 14:43:04 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse_args.h"
+#ifndef PARSE_ARGS_H
+# define PARSE_ARGS_H
 
-int	main(int ac, char **av)
-{
-	parse_args(ac, av);
-}
+# include "philos_infos.h"
+
+t_philos_infos	parse_args(int ac, char **av);
+
+#endif
