@@ -1,15 +1,17 @@
 NAME		=	philo
 
-SRCS		=	ft_atoi.c \
-				ft_isdigit.c \
-				ft_isint.c \
-				ft_isnbr.c \
-				ft_isspace.c \
-				ft_itoa.c \
-				ft_itoa_base.c \
-				ft_strcmp.c \
-				ft_strlen.c \
-				ft_strncmp.c \
+SRCS_NOT_LIBFT	=	ft_atoi.c \
+					ft_isdigit.c \
+					ft_isint.c \
+					ft_isnbr.c \
+					ft_isspace.c \
+					ft_itoa.c \
+					ft_itoa_base.c \
+					ft_strcmp.c \
+					ft_strlen.c \
+					ft_strncmp.c
+
+SRCS		=	$(addprefix not_libft/, $(SRCS_NOT_LIBFT)) \
 				main.c \
 				parse_args.c \
 				philosophize.c

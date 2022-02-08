@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 15:10:00 by jmaia             #+#    #+#             */
-/*   Updated: 2022/02/08 17:05:51 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/02/08 17:21:36 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 int				ft_atoi(const char *nptr);
 int				ft_isdigit(int c);
-int				ft_isint(const char *nbr);
+int				ft_isint(char *nbr);
 int				ft_isnbr(const char *nbr);
 int				ft_isspace(int c);
 unsigned char	*ft_itoa(long long nbr);
