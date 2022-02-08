@@ -1,6 +1,6 @@
 NAME		=	philo
 
-_SRCS		=	
+_SRCS		=	main.c
 SRCS		=	$(addprefix srcs/, $(_SRCS))
 
 OBJS		=	${SRCS:.c=.o}
