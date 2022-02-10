@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 14:45:27 by jmaia             #+#    #+#             */
-/*   Updated: 2022/02/08 17:06:45 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/02/10 10:20:17 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	are_args_valid(int ac, char **av)
 	i = 1;
 	while (i < 5)
 	{
-		if (!ft_isint(av[i]))
+		if (!ft_isint(av[i]) || ft_atoi(av[i]) < 0)
 			return (0);
 		i++;
 	}
