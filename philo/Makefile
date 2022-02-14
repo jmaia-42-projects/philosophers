@@ -12,6 +12,7 @@ SRCS_NOT_LIBFT	=	ft_atoi.c \
 					ft_strncmp.c
 
 SRCS		=	$(addprefix not_libft/, $(SRCS_NOT_LIBFT)) \
+				live.c \
 				main.c \
 				parse_args.c \
 				philosophize.c
@@ -20,7 +21,7 @@ _OBJS		=	${SRCS:.c=.o}
 OBJS		=	$(addprefix build/, $(_OBJS))
 
 CC			=	cc
-CFLAGS		=	-Wall -Werror -Wextra
+CFLAGS		=	-Wall -Werror -Wextra -pthread
 INCLUDE		=	-I includes/
 LIBS		=
 

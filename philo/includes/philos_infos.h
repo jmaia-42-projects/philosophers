@@ -6,12 +6,16 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 14:43:21 by jmaia             #+#    #+#             */
-/*   Updated: 2022/02/14 16:09:29 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/02/14 17:25:58 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILOS_INFOS_H
 # define PHILOS_INFOS_H
+
+# include <pthread.h>
+
+# include "live.h"
 
 typedef struct s_philos_infos
 {
@@ -32,6 +36,7 @@ typedef struct s_philo
 typedef struct s_world
 {
 	t_philo	*philos;
+
 }	t_world;
 
 #endif

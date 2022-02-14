@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophize.h                                     :+:      :+:    :+:   */
+/*   live.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 15:08:19 by jmaia             #+#    #+#             */
-/*   Updated: 2022/02/14 17:24:15 by jmaia            ###   ########.fr       */
+/*   Created: 2022/02/14 17:25:20 by jmaia             #+#    #+#             */
+/*   Updated: 2022/02/14 17:27:08 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSOPHIZE_H
-# define PHILOSOPHIZE_H
+#ifndef LIVE_H
+# define LIVE_H
 
-# include <pthread.h>
-# include <stdlib.h>
-
-# include "philos_infos.h"
-
-int	philosophize(t_philos_infos pi);
+void	*live(void *param);
 
 #endif
