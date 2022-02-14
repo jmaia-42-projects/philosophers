@@ -6,19 +6,26 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 15:19:51 by jmaia             #+#    #+#             */
-/*   Updated: 2022/02/14 16:22:34 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/02/14 16:31:07 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophize.h"
 
+static t_philo	*give_birth_to_philos(t_philos_infos *pi);
+static void		kill_philos(t_philos *philos, int n);
+
 int	philosophize(t_philos_infos	pi)
 {
-	(void) pi;
+	t_philo	*phlos;
+
+	philos = give_birth_to_philos(pi);
+	if (!philos)
+		return (1);
 	return (0);
 }
 
-t_philo	*give_birth_to_philos(t_philos_infos *pi)
+static t_philo	*give_birth_to_philos(t_philos_infos *pi)
 {
 	int		i;
 	t_philo	*philos;
