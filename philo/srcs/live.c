@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 17:24:36 by jmaia             #+#    #+#             */
-/*   Updated: 2022/02/14 17:27:02 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/02/14 17:38:58 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	*live(void *param)
 {
-	(void) param;
+	t_world	*world;
+
+	world = (t_world *)param;
 	return (0);
 }

@@ -6,12 +6,14 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 17:25:20 by jmaia             #+#    #+#             */
-/*   Updated: 2022/02/14 17:27:08 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/02/15 15:59:28 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIVE_H
 # define LIVE_H
+
+# include "philos_infos.h"
 
 void	*live(void *param);
 
