@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 14:43:21 by jmaia             #+#    #+#             */
-/*   Updated: 2022/02/17 14:32:40 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/02/17 15:18:31 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include <pthread.h>
 # include <sys/time.h>
-
-# include "live.h"
 
 typedef struct s_philos_infos
 {
