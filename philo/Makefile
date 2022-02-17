@@ -12,6 +12,7 @@ SRCS_NOT_LIBFT	=	ft_atoi.c \
 					ft_strncmp.c
 
 SRCS		=	$(addprefix not_libft/, $(SRCS_NOT_LIBFT)) \
+				do_something.c \
 				get_timestamp.c \
 				live.c \
 				main.c \

@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 15:38:23 by jmaia             #+#    #+#             */
-/*   Updated: 2022/02/16 16:24:32 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/02/17 14:24:48 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ suseconds_t	get_timestamp(struct timeval *start)
 	err = gettimeofday(&now, 0);
 	if (err)
 		return (-1);
-	ft_timersub(now, start, &raw_timestamp);
-	timestamp = raw_timestamp.tvsec * 10000000 + b->tv_usec;
+	ft_timersub(&now, start, &raw_timestamp);
+	timestamp = raw_timestamp.tv_sec * 10000000 + raw_timestamp.tv_usec;
 	return (timestamp);
 }
 

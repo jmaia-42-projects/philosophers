@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 17:24:36 by jmaia             #+#    #+#             */
-/*   Updated: 2022/02/16 14:33:54 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/02/16 15:22:56 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ static void	eat(int philo_id, t_world *world)
 
 static void	think(int philo_id, t_world *world)
 {
-
+	printf("%ld %d is thinking\n", world);
 }
 
-static void sleep(int philo_id, t_world *world)
+static void	sleep(int philo_id, t_world *world)
 {
 
 }
