@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 14:43:21 by jmaia             #+#    #+#             */
-/*   Updated: 2022/02/17 15:18:31 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/02/18 12:18:20 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,5 @@ typedef struct s_philo
 	int			last_meal;
 	int			n_meals;
 }	t_philo;
-
-typedef struct s_world
-{
-	t_philos_infos	pi;
-	t_philo			*philos;
-	pthread_mutex_t	*forks;
-	struct timeval	*start_time;
-}	t_world;
 
 #endif

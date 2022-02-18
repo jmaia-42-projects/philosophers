@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 14:40:31 by jmaia             #+#    #+#             */
-/*   Updated: 2022/02/17 14:28:17 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/02/18 12:38:02 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	do_something(int philo_id, t_action action, t_world *world)
 
 	get_action_desc(&action_desc, action);
 	timestamp = get_timestamp(world->start_time);
-	printf("%ld %d %s\n", timestamp, philo_id, action_desc);
+	printf("%ld %d %s\n", timestamp / 1000, philo_id, action_desc);
 }
 
 static void	get_action_desc(char **action_desc, t_action action)

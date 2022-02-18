@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 14:45:27 by jmaia             #+#    #+#             */
-/*   Updated: 2022/02/10 10:20:17 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/02/18 12:17:17 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 
 static int	are_args_valid(int ac, char **av);
 
-t_philos_infos	parse_args(int ac, char **av)
+t_philos_infos	*parse_args(int ac, char **av)
 {
-	t_philos_infos	pi;
+	t_philos_infos	*pi;
 
 	if (!are_args_valid(ac, av))
-	{
-		pi.n_philos = -1;
-		return (pi);
-	}
-	pi.n_philos = ft_atoi(av[1]);
-	pi.time_to_die = ft_atoi(av[2]);
-	pi.time_to_eat = ft_atoi(av[3]);
-	pi.time_to_sleep = ft_atoi(av[4]);
+		return (0);
+	pi = malloc(sizeof(*pi));
+	if (!pi)
+		return (0);
+	pi->n_philos = ft_atoi(av[1]);
+	pi->time_to_die = ft_atoi(av[2]);
+	pi->time_to_eat = ft_atoi(av[3]);
+	pi->time_to_sleep = ft_atoi(av[4]);
 	if (ac > 5)
-		pi.n_meals = ft_atoi(av[5]);
+		pi->n_meals = ft_atoi(av[5]);
 	return (pi);
 }
 

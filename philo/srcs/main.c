@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 12:47:04 by jmaia             #+#    #+#             */
-/*   Updated: 2022/02/08 17:17:17 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/02/18 11:18:59 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ static void	print_syntax(const char *prog_name);
 
 int	main(int ac, char **av)
 {
-	t_philos_infos	pi;
+	t_philos_infos	*pi;
 	int				err;
 
 	pi = parse_args(ac, av);
-	if (pi.n_philos == -1)
+	if (!pi)
 	{
 		print_syntax(av[0]);
 		return (1);

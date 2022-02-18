@@ -17,7 +17,8 @@ SRCS		=	$(addprefix not_libft/, $(SRCS_NOT_LIBFT)) \
 				live.c \
 				main.c \
 				parse_args.c \
-				philosophize.c
+				philosophize.c \
+				world.c
 
 _OBJS		=	${SRCS:.c=.o}
 OBJS		=	$(addprefix build/, $(_OBJS))
