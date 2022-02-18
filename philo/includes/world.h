@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 12:17:38 by jmaia             #+#    #+#             */
-/*   Updated: 2022/02/18 12:41:20 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/02/18 12:48:27 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_world
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
 	struct timeval	*start_time;
+	pthread_mutex_t	*barrier;
 }	t_world;
 
 t_world	*new_world(t_philos_infos *pi);
