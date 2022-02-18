@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 15:19:51 by jmaia             #+#    #+#             */
-/*   Updated: 2022/02/18 13:46:16 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/02/18 12:41:15 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,21 @@ static int	give_birth_to_philos(t_world *world)
 	int		i;
 	int		err;
 	void	*params[2];
-	int		*philos_id;
 
 	i = 0;
 	params[0] = world;
 	err = 0;
-	philos_id = malloc(sizeof(*philos_id) * world->pi->n_philos);
-	if (!philos_id)
-		return (1);
 	while (i < world->pi->n_philos && !err)
 	{
 		world->philos[i].last_meal = 0;
 		world->philos[i].n_meals = 0;
-		philos_id[i] = i;
-		params[1] = &philos_id[i];
+		params[1] = malloc(sizeof(int));
+		if (!params[1])
+		{
+			kill_philos(world->philos, i);
+			return (1);
+		}
+		*(int *)params[1] = i;
 		err = pthread_create(&world->philos[i].thread, 0, &live, params);
 		if (err)
 			kill_philos(world->philos, i);
