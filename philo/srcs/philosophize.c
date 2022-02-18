@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 15:19:51 by jmaia             #+#    #+#             */
-/*   Updated: 2022/02/17 15:28:56 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/02/17 15:44:42 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	philosophize(t_philos_infos	pi)
 	philos = give_birth_to_philos(&pi);
 	if (!philos)
 		return (1);
+	while (1)
+		;
 	return (0);
 }
 
