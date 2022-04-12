@@ -2,7 +2,10 @@ NAME		=	philo
 
 SRCS		=	\
 				main.c \
-				ft_wait.c
+				ft_wait.c \
+				utils/ft_strcpy.c \
+				utils/ft_strlen.c \
+				utils/nbrlen.c
 
 _OBJS		=	${SRCS:.c=.o}
 OBJS		=	$(addprefix build/, $(_OBJS))
