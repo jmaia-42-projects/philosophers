@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:33:22 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/12 18:21:08 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/12 18:29:32 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@
 static void	set_nbr_and_move(char **str, unsigned long nbr);
 static void	set_nbr(char **str, unsigned long nbr);
 
-// TIMESTAMP X MESSAGE
-// itoa timestamp
-// itoa philo_i
-// strcpy avec tout ça
-// => Go avoir un seul malloc
 int	do_action(unsigned long timestamp, unsigned int philo_i, char *action)
 {
 	char	*cur_msg;
