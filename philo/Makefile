@@ -1,6 +1,8 @@
 NAME		=	philo
 
-SRCS		=	main.c
+SRCS		=	\
+				main.c \
+				ft_wait.c
 
 _OBJS		=	${SRCS:.c=.o}
 OBJS		=	$(addprefix build/, $(_OBJS))
