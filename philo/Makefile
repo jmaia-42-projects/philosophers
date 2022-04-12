@@ -1,6 +1,7 @@
 NAME		=	philo
 
 SRCS		=	\
+				actions/do_action.c \
 				main.c \
 				ft_wait.c \
 				utils/ft_strcpy.c \

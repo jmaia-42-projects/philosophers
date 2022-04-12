@@ -1,17 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   do_actions.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/07 18:12:53 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/12 18:27:30 by jmaia            ###   ########.fr       */
+/*   Created: 2022/04/12 17:07:45 by jmaia             #+#    #+#             */
+/*   Updated: 2022/04/12 18:10:39 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(int ac, char **av)
-{
-	(void) ac;
-	(void) av;
-}
+#ifndef DO_ACTIONS_H
+# define DO_ACTIONS_H
+
+# include "actions.h"
+
+int	do_action(unsigned long timestamp, unsigned int philo_i, char *action);
+
+#endif
