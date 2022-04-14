@@ -1,0 +1,18 @@
+Bon alors, comment qu'on fait pour Philo ?
+Le philo doit pouvoir manger, penser et dormir
+
+Et si on faisait une fonction pour chaque action ?
+Ça m'a l'air chiant, go faire un fonction générale avec un temps à attendre et un message à afficher
+Hmm, mais c'est chiant du coup par rapport aux forks
+
+Hmm, allez go faire une fonction pour chaque action
+=> Fork => À voir, ça doit prendre des forks
+=> Eat => Ça affiche le message et ça attend
+=> Sleep => Ça affiche le message et ça attend
+=> Think => Ça affiche le message
+
+Au tout début, on va init les forks
+Au tout début, on va init les philos
+
+Chaque philo a un id, c'est utile askip
+
