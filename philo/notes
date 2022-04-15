@@ -41,7 +41,7 @@ Par contre, du coup, il y a toujours le truc du nombre impair de philo
 	+ Si, y'a un soucis au moment du parse, erreur + fin de simulation
 	+ Ça met l'ensemble dans une structure pour l'utiliser dans les prochaines étapes
 - Ensuite, on va faire un tableau de philo ou un truc du genre
-	+ Le but, c'est d'avoir une stucture par philo avec toutes les informations que chaque philo aura besoin
+	+ Le but, c'est d'avoir une stucture par philo avec toutes les informations que chaque philo aura besoin (Va falloir malloc pour pas faire de la nerde)
 		+ ID du philo
 		+ Fourchette de gauche
 		+ Fourchette de droite
@@ -56,3 +56,6 @@ Par contre, du coup, il y a toujours le truc du nombre impair de philo
 	+ En mode détaché
 		+ On peut simplement attendre qu'un philo soit mort et directement exit à la fin
 		+ Hmm, par contre du coup ça m'a l'air chiant pour destroy tous les mutexes s'il y a encore des philos qui les utilisent
+		+ Azi ça sera chiant, on fait pas ça
+- Et là on free tout le bazar :)
+- BAM PHILO EST FINI MA GUEULE
