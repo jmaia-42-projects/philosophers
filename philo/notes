@@ -16,3 +16,43 @@ Au tout début, on va init les philos
 
 Chaque philo a un id, c'est utile askip
 
+
+Alors, situation réelle :
+Un philo, a une fourchette à sa gauche et une fourchette à sa droite, il devrait y avoir un truc du genre stocké quelque part dans une structure pour chaque philo
+Dans le cas où il y a qu'un seul philo, on peut considérer qu'il n'y a qu'une seule fourchette à gauche et pas de fouchette à droite.
+
+Va falloir parse les arguments aussi
+./philo <n_philos> <time_to_die> <time_to_eat> <time_to_sleep> [n_meals]
+=> Bam, ça part dans une structure info ou un truc comme ça
+
+Faudra penser à un moyen qu'ils n'utilisent pas chacun une fourchette sans alterner
+	=> Y'a l'histoire du commencement quelques ms plus tard
+Par contre, du coup, il y a toujours le truc du nombre impair de philo
+	=> Ça, va falloir faire 3 services ou un truc comme ça
+		=> Imaginons 3 philos
+		=> Il y a donc 3 fourchettes
+		=> Pour que chaque philo puisse manger il a besoin de 2 fourchettes
+		=> Donc, ils vont pouvoir manger que un par un => 3 services
+		=> À voir comment organiser ça
+
+--------------------------------------------------
+------ Ordre des trucs -------
+- D'abord, ça parse
+	+ Si, y'a un soucis au moment du parse, erreur + fin de simulation
+	+ Ça met l'ensemble dans une structure pour l'utiliser dans les prochaines étapes
+- Ensuite, on va faire un tableau de philo ou un truc du genre
+	+ Le but, c'est d'avoir une stucture par philo avec toutes les informations que chaque philo aura besoin
+		+ ID du philo
+		+ Fourchette de gauche
+		+ Fourchette de droite
+		+ Last eat
+		+ (Ça m'a l'air pas mal, à voir pour la suite s'il faut autre chose encore)
+- Bam, ensuite c'est les fourchettes, on en alloue le même nombre que le nombre de philos et on fait en sorte de remplir les structures philos avec des fourchettes
+- Hmm, et là normalement tout est bon, on peut faire la boucle qui lance les threads avec la boucle de vie (Go l'appeler live) et la structure philo qui va avec
+- Juste après, faut attendre les philos (Il y a 2 moyens de faire, y'a l'histoire avec et sans détachement)
+	+ En mode joinable
+		+ Va falloir join les threads de tous les philos à la fin, en attendant qu'ils finissent, c'est chiant
+		+ On peut chopper l'exit status mais du coup ca osef
+	+ En mode détaché
+		+ On peut simplement attendre qu'un philo soit mort et directement exit à la fin
+		+ Hmm, par contre du coup ça m'a l'air chiant pour destroy tous les mutexes s'il y a encore des philos qui les utilisent
