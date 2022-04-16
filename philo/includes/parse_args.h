@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 14:39:16 by jmaia             #+#    #+#             */
-/*   Updated: 2022/02/18 12:16:42 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/16 09:59:42 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@
 
 # include "philos_infos.h"
 
-t_philos_infos	*parse_args(int ac, char **av);
+void	parse_args(t_philos_infos *pi, int ac, char **av);
 
 #endif
