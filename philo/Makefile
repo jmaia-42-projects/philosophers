@@ -1,11 +1,23 @@
 NAME		=	philo
 
+SRCS_NOT_LIBFT	=	ft_atoi.c \
+					ft_isdigit.c \
+					ft_isint.c \
+					ft_isnbr.c \
+					ft_isspace.c \
+					ft_itoa.c \
+					ft_itoa_base.c \
+					ft_strcmp.c \
+					ft_strlen.c \
+					ft_strncmp.c
+
 SRCS		=	\
+				$(addprefix not_libft/, $(SRCS_NOT_LIBFT)) \
 				actions/do_action.c \
 				main.c \
 				ft_wait.c \
+				parse_args.c \
 				utils/ft_strcpy.c \
-				utils/ft_strlen.c \
 				utils/nbrlen.c
 
 _OBJS		=	${SRCS:.c=.o}
