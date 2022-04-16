@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/07 18:12:53 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/16 10:09:40 by jmaia            ###   ########.fr       */
+/*   Created: 2022/04/16 10:10:03 by jmaia             #+#    #+#             */
+/*   Updated: 2022/04/16 10:12:43 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#ifndef PHILO_H
+# define PHILO_H
 
-#include "philos_infos.h"
-#include "parse_args.h"
-
-int	main(int ac, char **av)
+typedef struct s_philo
 {
-	t_philos_infos	pi;
+	int		id;
+	int		last_eat;
+	t_fork	*left_fork;
+	t_fork	*right_fork;
+}	t_philo;
 
-	parse_args(&pi, ac, av);
-	if (pi.n_philos == -1)
-	{
-		write(2, "An error occured while parsing arguments.\n", 42);
-		return (1);
-	}
-}
+#endif
