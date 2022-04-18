@@ -1,32 +1,28 @@
-NAME		=	philo
-
-SRCS_NOT_LIBFT	=	ft_atoi.c \
-					ft_isdigit.c \
-					ft_isint.c \
-					ft_isnbr.c \
-					ft_isspace.c \
-					ft_itoa.c \
-					ft_itoa_base.c \
-					ft_strcmp.c \
-					ft_strlen.c \
-					ft_strncmp.c
+NAME		=	mind.a
 
 SRCS		=	\
-				$(addprefix not_libft/, $(SRCS_NOT_LIBFT)) \
-				actions/do_action.c \
-				main.c \
-				ft_wait.c \
-				parse_args.c \
-				utils/ft_strcpy.c \
-				utils/nbrlen.c
+				lists/ft_lstadd_front.c \
+				lists/ft_lstnew.c \
+				mind_add.c \
+				mind_blow.c \
+				mind_free.c \
+				mind_init.c \
+				mind_malloc.c \
+				mind_remove.c
 
 _OBJS		=	${SRCS:.c=.o}
 OBJS		=	$(addprefix build/, $(_OBJS))
+DEPS		=	$(OBJS:%.o=%.d)
 
+
+AR			=	ar
 CC			=	cc
 CFLAGS		=	-Wall -Werror -Wextra
-INCLUDE		=	-I includes/
-LIBS		=	libs/mind/mind.a
+INCLUDE		=	\
+				-I includes/
+
+LIBS		=
+LIBS_EXT	=
 
 
 all		:	$(NAME)
@@ -37,13 +33,13 @@ build/%.o	:	srcs/%.c
 	fi
 	$(CC) ${CFLAGS} ${INCLUDE} -c $< -o $@
 
-$(NAME)	:	$(OBJS) | libs
-	$(CC) $(CFLAGS) $(OBJS) $(LIBS) -o $(NAME)
+$(NAME)	:	$(OBJS) $(LIBS)
+	$(AR) -rc $(NAME) $(OBJS)
 
-libs	:
+$(LIBS)	:	FORCE
 	@for lib in $(LIBS); do\
-		echo make -C $$(dirname $$lib);\
-		make -C $$(dirname $$lib);\
+		echo $(MAKE) -C $$(dirname $$lib);\
+		$(MAKE) -C $$(dirname $$lib);\
 	done
 
 clean	:	
@@ -72,7 +68,7 @@ fcleanall	:	fclean fcleanlibs
 
 re		:	fclean ${NAME}
 
-relibs	:
+relibs	:	
 	@for lib in $(LIBS); do\
 		echo make -C $$(dirname $$lib) re;\
 		make -C $$(dirname $$lib) re;\
@@ -81,4 +77,6 @@ relibs	:
 reall	: relibs re
 
 
-.PHONY	:	all libs clean cleanlibs cleanall fclean fcleanlibs fcleanall re relibs reall
+bonus	:	$(NAME)
+
+.PHONY	:	all clean cleanlibs cleanall fclean fcleanlibs fcleanall re relibs reall FORCE bonus
