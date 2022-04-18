@@ -16,6 +16,7 @@ SRCS		=	\
 				actions/do_action.c \
 				main.c \
 				ft_wait.c \
+				init_philos.c \
 				parse_args.c \
 				utils/ft_strcpy.c \
 				utils/nbrlen.c
