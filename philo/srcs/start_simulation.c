@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   simulation.h                                       :+:      :+:    :+:   */
+/*   start_simulation.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/18 19:38:31 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/18 20:22:15 by jmaia            ###   ########.fr       */
+/*   Created: 2022/04/18 20:06:10 by jmaia             #+#    #+#             */
+/*   Updated: 2022/04/18 20:24:56 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SIMULATION_H
-# define SIMULATION_H
+#include "simulation.h"
 
-# include "philo.h"
-# include "philos_infos.h"
+int	start_simulation(t_philo *philos, t_philos_infos *pi)
+{
+	int	i;
+	int	err;
 
-int		init_forks(t_philo *philos, t_philos_infos *pi);
-int		init_philos(t_philo **philos, t_philos_infos *pi);
-int		start_simulation(t_philo *philos, t_philos_infos *pi);
-void	*live(void *param);
-void	free_forks(t_philo *philos);
-void	wait_philos(t_philo *philos, t_philos_infos *pi);
-
-#endif
+	i = 0;
+	err = 0;
+	while (i < pi->n_philos && !err)
+	{
+		err = pthread_create(&philos[i].thread, 0, &live, &philos[i]);
+		i++;
+	}
+	return (err != 0);
+}

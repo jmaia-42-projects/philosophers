@@ -17,6 +17,7 @@ SRCS		=	\
 				main.c \
 				ft_wait.c \
 				parse_args.c \
+				start_simulation.c \
 				utils/ft_strcpy.c \
 				utils/nbrlen.c
 
