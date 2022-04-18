@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 20:38:00 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/18 21:01:22 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/18 21:05:14 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	init_forks(t_philo *philos, t_philos_infos *pi)
 		else if (pi->n_philos > 1)
 			left_philo = &philos[i - 1];
 		err = give_fork_to_philos(left_philo, &philos[i]);
+		i++;
 	}
 	// USE YOUR MIND
 	return (0);

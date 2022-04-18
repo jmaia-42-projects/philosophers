@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 20:26:54 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/18 20:36:53 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/18 21:04:44 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	init_philos(t_philo **philos, t_philos_infos *pi)
 	*philos = malloc(sizeof(**philos) * pi->n_philos);
 	if (!*philos)
 		return (1);
-	while (i <= pi->n_philos)
+	while (i < pi->n_philos)
 	{
 		init_philo(&(*philos)[i], i + 1);
 		i++;
