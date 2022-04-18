@@ -6,23 +6,67 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 18:12:53 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/16 10:09:40 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/18 19:58:07 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include <unistd.h>
 
-#include "philos_infos.h"
 #include "parse_args.h"
+#include "philo.h"
+#include "philos_infos.h"
+#include "simulation.h"
+
+static int	init_simulation(t_philos_infos **pi, t_philo **philos,
+				int ac, char **av);
+static void	free_simulation(t_philo *philos, t_philos_infos *pi);
 
 int	main(int ac, char **av)
 {
-	t_philos_infos	pi;
+	int				err;
+	t_philo			*philos;
+	t_philos_infos	*pi;
 
-	parse_args(&pi, ac, av);
-	if (pi.n_philos == -1)
-	{
-		write(2, "An error occured while parsing arguments.\n", 42);
+	err = init_simulation(&pi, &philos, ac, av);
+	if (err)
+		return (err);
+	err = start_simulation(philos, pi);
+	if (err)
+		write(2, "An error occured during simulation.\n", 36);
+	wait_philos(philos, pi);
+	free_simulation(philos, pi);
+}
+
+static int	init_simulation(t_philos_infos **pi, t_philo **philos,
+				int ac, char **av)
+{
+	int	err;
+
+	err = parse_args_and_print_error(pi, ac, av);
+	if (err)
 		return (1);
+	err = init_philos(philos, *pi);
+	if (err)
+	{
+		write(2, "An error occured while initializing philos.\n", 44);
+		return (2);
 	}
+	err = init_forks(*philos, *pi);
+	if (err)
+	{
+		write(2, "An error occured while initializing forks.\n", 43);
+		return (3);
+	}
+	return (0);
+}
+
+static void	free_simulation(t_philo	*philos, t_philos_infos *pi)
+{
+	int	i;
+
+	i = 0;
+	free_forks(philos);
+	free(philos);
+	free(pi);
 }
