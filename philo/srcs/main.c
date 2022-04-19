@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 18:12:53 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/18 21:05:38 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/19 11:12:18 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,6 @@ static int	init_simulation(t_philos_infos **pi, t_philo **philos,
 
 static void	free_simulation(t_philo	*philos, t_philos_infos *pi)
 {
-	int	i;
-
-	i = 0;
 	free_forks(philos);
 	free(philos);
 	free(pi);
