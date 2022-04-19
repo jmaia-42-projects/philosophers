@@ -15,6 +15,7 @@ SRCS		=	\
 				$(addprefix not_libft/, $(SRCS_NOT_LIBFT)) \
 				actions/do_action.c \
 				main.c \
+				free_forks.c \
 				ft_wait.c \
 				init_forks.c \
 				init_philos.c \
