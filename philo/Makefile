@@ -18,6 +18,7 @@ SRCS		=	\
 				ft_wait.c \
 				init_forks.c \
 				init_philos.c \
+				live.c \
 				parse_args.c \
 				start_simulation.c \
 				utils/ft_strcpy.c \
