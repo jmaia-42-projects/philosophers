@@ -16,6 +16,8 @@ SRCS		=	\
 				actions/do_action.c \
 				main.c \
 				ft_wait.c \
+				init_forks.c \
+				init_philos.c \
 				parse_args.c \
 				start_simulation.c \
 				utils/ft_strcpy.c \
@@ -25,7 +27,7 @@ _OBJS		=	${SRCS:.c=.o}
 OBJS		=	$(addprefix build/, $(_OBJS))
 
 CC			=	cc
-CFLAGS		=	-Wall -Werror -Wextra
+CFLAGS		=	-g3 -Wall -Werror -Wextra
 INCLUDE		=	-I includes/
 LIBS		=	libs/mind/mind.a
 
