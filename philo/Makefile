@@ -22,7 +22,8 @@ SRCS		=	\
 				parse_args.c \
 				start_simulation.c \
 				utils/ft_strcpy.c \
-				utils/nbrlen.c
+				utils/nbrlen.c \
+				wait_philos.c
 
 _OBJS		=	${SRCS:.c=.o}
 OBJS		=	$(addprefix build/, $(_OBJS))
