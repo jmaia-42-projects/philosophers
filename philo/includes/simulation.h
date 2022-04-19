@@ -6,13 +6,14 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 19:38:31 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/19 11:28:09 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/19 12:11:25 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SIMULATION_H
 # define SIMULATION_H
 
+# include "actions/actions.h"
 # include "philo.h"
 # include "philos_infos.h"
 

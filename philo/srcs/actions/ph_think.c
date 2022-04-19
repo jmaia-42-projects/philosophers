@@ -1,37 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   actions.h                                          :+:      :+:    :+:   */
+/*   ph_think.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/12 17:06:12 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/19 12:18:13 by jmaia            ###   ########.fr       */
+/*   Created: 2022/04/19 12:13:32 by jmaia             #+#    #+#             */
+/*   Updated: 2022/04/19 12:18:44 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ACTIONS_H
-# define ACTIONS_H
+#include "actions/actions.h"
 
-# define TAKE_FORK_MSG	"has taken a fork"
-# define EAT_MSG		"is eating"
-# define SLEEP_MSG		"is sleeping"
-# define THINK_MSG		"is thinking"
-# define DIE_MSG		"died"
-
-# include "philo.h"
-
-typedef enum e_actions
+int	ph_think(t_philo *philo)
 {
-	TAKE_FORK,
-	EAT,
-	SLEEP,
-	THINK,
-	DIE
-}	t_actions;
-
-int	ph_eat(t_philo *philo);
-int	ph_sleep(t_philo *philo);
-int	ph_think(t_philo *philo);
-
-#endif
+	(void) philo;
+	return (0);
+}
