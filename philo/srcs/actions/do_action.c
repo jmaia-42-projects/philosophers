@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:33:22 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/20 10:29:25 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/20 10:37:43 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <unistd.h>
 
 #include "actions/do_actions.h"
+#include "ft_wait.h"
 #include "utils.h"
 
 static void	set_nbr_and_move(char **str, unsigned long nbr);
@@ -30,6 +31,7 @@ int	do_action(t_philo *philo, unsigned long timestamp, char *action)
 	if (!philo->state->is_simulation_over)
 		err = print_action(timestamp, philo->id, action);
 	pthread_mutex_unlock(&philo->state->is_simulation_over_lock);
+	ft_wait_ms_until(timestamp, 0);
 	return (err);
 }
 
