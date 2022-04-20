@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 18:12:53 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/20 09:58:51 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/20 10:19:59 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 static int	init_simulation(t_simulation_state **state, t_philo **philos,
 				int ac, char **av);
+static int	init_philos_with_forks(t_philo **philos, t_simulation_state *state);
 static int	init_simulation_over_handling(t_simulation_state *state);
 static void	free_simulation(t_philo *philos, t_simulation_state *state);
 
@@ -51,18 +52,9 @@ static int	init_simulation(t_simulation_state **state, t_philo **philos,
 	err = parse_args_and_print_error(&(*state)->pi, ac, av);
 	if (err)
 		return (2);
-	err = init_philos(philos, *state);
+	err = init_philos_with_forks(philos, *state);
 	if (err)
-	{
-		write(2, "An error occured while initializing philos.\n", 44);
-		return (3);
-	}
-	err = init_forks(*philos, &(*state)->pi);
-	if (err)
-	{
-		write(2, "An error occured while initializing forks.\n", 43);
-		return (4);
-	}
+		return (err);
 	err = init_simulation_over_handling(*state);
 	if (err)
 	{
@@ -70,6 +62,25 @@ static int	init_simulation(t_simulation_state **state, t_philo **philos,
 		return (5);
 	}
 	return (0);
+}
+
+static int	init_philos_with_forks(t_philo **philos, t_simulation_state *state)
+{
+	int	err;
+
+	err = init_philos(philos, state);
+	if (err)
+	{
+		write(2, "An error occured while initializing philos.\n", 44);
+		return (3);
+	}
+	err = init_forks(*philos, &state->pi);
+	if (err)
+	{
+		write(2, "An error occured while initializing forks.\n", 43);
+		return (4);
+	}
+	return (err);
 }
 
 static int	init_simulation_over_handling(t_simulation_state *state)
