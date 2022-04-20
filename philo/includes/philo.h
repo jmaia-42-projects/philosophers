@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 10:10:03 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/19 12:53:36 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/20 10:00:11 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <pthread.h>
 
 # include "philos_infos.h"
+# include "simulation_state.h"
 
 typedef struct s_philo
 {
@@ -24,7 +25,7 @@ typedef struct s_philo
 	pthread_mutex_t		*left_fork;
 	pthread_mutex_t		*right_fork;
 	pthread_t			thread;
-	t_philos_infos		*pi;
+	t_simulation_state	*state;
 }	t_philo;
 
 #endif

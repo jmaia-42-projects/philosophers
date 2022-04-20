@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 18:12:53 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/20 09:57:32 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/20 09:58:51 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int	init_simulation(t_simulation_state **state, t_philo **philos,
 	err = parse_args_and_print_error(&(*state)->pi, ac, av);
 	if (err)
 		return (2);
-	err = init_philos(philos, &(*state)->pi);
+	err = init_philos(philos, *state);
 	if (err)
 	{
 		write(2, "An error occured while initializing philos.\n", 44);
