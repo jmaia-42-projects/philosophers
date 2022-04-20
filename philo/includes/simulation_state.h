@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 09:39:16 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/20 09:43:09 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/20 09:44:24 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ typedef struct s_simulation_state
 {
 	int				is_simulation_over;
 	pthead_mutex_t	is_simulation_over_lock;
-	t_philos_infos	*pi;
+	t_philos_infos	pi;
 }	t_simulation_state;
 
 #endif
