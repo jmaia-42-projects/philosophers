@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 11:30:28 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/20 10:12:02 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/20 10:15:38 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	is_simulation_over(t_philo *philo)
 {
 	int	is_simulation_over;
 
-	if (philo->n_meals >= philo->state->pi.n_meals)
+	if (philo->state->pi.n_meals != -1 && philo->n_meals >= philo->state->pi.n_meals)
 		return (1);
 	pthread_mutex_lock(&philo->state->is_simulation_over_lock);
 	is_simulation_over = philo->state->is_simulation_over;

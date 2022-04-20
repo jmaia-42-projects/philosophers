@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 14:45:27 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/20 09:47:51 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/20 10:16:12 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	parse_args(t_philos_infos *pi, int ac, char **av)
 	pi->time_to_sleep = ft_atoi(av[4]);
 	if (ac > 5)
 		pi->n_meals = ft_atoi(av[5]);
+	else
+		pi->n_meals = -1;
 	return (0);
 }
 
