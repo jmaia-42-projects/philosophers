@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 12:13:32 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/19 13:01:19 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/20 10:36:31 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ int	ph_think(t_philo *philo)
 {
 	int	err;
 
-	err = do_action(0, philo->id, THINK_MSG);
+	err = do_action(philo, 0, THINK_MSG);
 	return (err);
 }
