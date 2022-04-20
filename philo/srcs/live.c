@@ -16,12 +16,10 @@ static int	is_simulation_over(t_philo *philo);
 
 void	*live(void *param)
 {
-	int		is_simulation_over; // NEED TO BE REPLACED
 	t_philo	*philo;
 
 	philo = (t_philo *)param;
-	is_simulation_over = 0;
-	while (!is_simulation_over)
+	while (!is_simulation_over(philo))
 	{
 		ph_eat(philo);
 		ph_sleep(philo);
