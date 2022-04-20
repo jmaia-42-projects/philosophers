@@ -81,3 +81,5 @@ En tout cas, c'est que les mutexes des forks
 On peut pas simplement ajouter un time_to_eat après les mutexes parce-qu'on pourrait avoir des philos en décalé et du coup, ça serait pas exactement time_to_eat
 À la limite, il faudrait faire en sorte de définir le temps actuel juste avant que le philo pose sa fourchette
 => En vrai, ouais y'a moyen, c'est une bonne idée, go tester ça
+=> Hmm, par contre le soucis c'est qu'il va très probablement y avoir plein de philos qui vont poser leur fourchette en même temps => Du coup, ils vont vouloir set le temps en même temps et ça va ralentir le tout
+=> Si on pense au fait que dans la partie bonus ça sera avec des process, on peut faire un diff arrondi entre 2 get_time_of_day
