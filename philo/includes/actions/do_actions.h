@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:07:45 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/12 18:10:39 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/20 10:27:09 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 # include "actions.h"
 
-int	do_action(unsigned long timestamp, unsigned int philo_i, char *action);
+int	do_action(t_philo *philo, unsigned long timestamp, char *action);
 
 #endif

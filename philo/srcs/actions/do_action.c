@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:33:22 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/12 18:29:32 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/20 10:29:25 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,23 @@
 
 static void	set_nbr_and_move(char **str, unsigned long nbr);
 static void	set_nbr(char **str, unsigned long nbr);
+static int	print_action(unsigned long timestamp, unsigned int philo_i,
+				char *action);
 
-int	do_action(unsigned long timestamp, unsigned int philo_i, char *action)
+int	do_action(t_philo *philo, unsigned long timestamp, char *action)
+{
+	int	err;
+
+	err = 0;
+	pthread_mutex_lock(&philo->state->is_simulation_over_lock);
+	if (!philo->state->is_simulation_over)
+		err = print_action(timestamp, philo->id, action);
+	pthread_mutex_unlock(&philo->state->is_simulation_over_lock);
+	return (err);
+}
+
+static int	print_action(unsigned long timestamp, unsigned int philo_i,
+				char *action)
 {
 	char	*cur_msg;
 	char	*msg;

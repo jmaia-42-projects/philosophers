@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 12:13:32 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/20 10:00:54 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/20 10:29:47 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ int	ph_sleep(t_philo *philo)
 {
 	int	err;
 
-	err = do_action(philo->state->pi.time_to_sleep, philo->id, SLEEP_MSG);
+	err = do_action(philo, philo->state->pi.time_to_sleep, SLEEP_MSG);
 	return (err);
 }
