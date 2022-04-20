@@ -59,3 +59,25 @@ Par contre, du coup, il y a toujours le truc du nombre impair de philo
 		+ Azi ça sera chiant, on fait pas ça
 - Et là on free tout le bazar :)
 - BAM PHILO EST FINI MA GUEULE
+-----------------------------------------
+Bon, petit soucis, on peut pas avoir un temps propre à chaque philo parce-qu'avec les mutexes il va y avoir des décalages
+Il faudrait donc, un temps global, protégé par un mutex
+Ce qui pourrait être fait, c'est qu'après chaque wait_ms, on vient modifier cette valeur
+Le soucis, c'est : Qu'est-ce qu'il se passe si juste avant de modifier la valeur, un philo veut attendre aussi
+=> Bah, il est niqué
+Pareil s'il veut attendre entre 2 attente
+Du style :
+- Philo 1 attend 60ms
+- Philo 2 attend 30ms
+- Philo 2 attend 30ms
+=> À tout moment, ça foire
+
+Comment faire, comment faire, comment faire ?
+ALORS, Reprenons
+Le but, c'est de pouvoir suivre l'évolution du temps
+Sans réelle attente en dehors du ft_wait, il suffit simplement de faire la somme du temps qu'on a attendu.
+Le soucis vient du fait qu'on peut attendre en dehors des ft_wait => LES MUTEXES
+En tout cas, c'est que les mutexes des forks
+On peut pas simplement ajouter un time_to_eat après les mutexes parce-qu'on pourrait avoir des philos en décalé et du coup, ça serait pas exactement time_to_eat
+À la limite, il faudrait faire en sorte de définir le temps actuel juste avant que le philo pose sa fourchette
+=> En vrai, ouais y'a moyen, c'est une bonne idée, go tester ça
