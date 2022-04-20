@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 20:26:54 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/18 21:04:44 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/20 09:21:02 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include <stdlib.h>
 
-static void	init_philo(t_philo *philo, int id);
+static void	init_philo(t_philo *philo, int id, t_philos_infos *pi);
 
 int	init_philos(t_philo **philos, t_philos_infos *pi)
 {
@@ -26,16 +26,17 @@ int	init_philos(t_philo **philos, t_philos_infos *pi)
 		return (1);
 	while (i < pi->n_philos)
 	{
-		init_philo(&(*philos)[i], i + 1);
+		init_philo(&(*philos)[i], i + 1, pi);
 		i++;
 	}
 	return (0);
 }
 
-static void	init_philo(t_philo *philo, int id)
+static void	init_philo(t_philo *philo, int id, t_philos_infos *pi)
 {
 	philo->id = id;
 	philo->last_eat = 0;
 	philo->left_fork = 0;
 	philo->right_fork = 0;
+	philo->pi = pi;
 }
