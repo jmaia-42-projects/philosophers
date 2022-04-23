@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 11:35:19 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/20 11:36:11 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/23 11:59:02 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,12 @@ struct timeval	time_diff(struct timeval a, struct timeval b)
 		diff.tv_sec--;
 	}
 	return (diff);
+}
+
+struct timeval	sum(struct timeval a, unsigned long us)
+{
+	a.tv_usec += us;
+	a.tv_sec += a.tv_usec / 1000000;
+	a.tv_usec %= 1000000;
+	return (a);
 }
