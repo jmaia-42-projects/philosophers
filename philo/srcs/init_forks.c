@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 20:38:00 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/18 21:05:14 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/23 11:47:44 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 #include <stdlib.h>
 
-static int				give_fork_to_philos(t_philo *left_philo,
-							t_philo *right_philo);
-static pthread_mutex_t	*init_fork(void);
+static int		give_fork_to_philos(t_philo *left_philo,
+					t_philo *right_philo);
+static t_fork	*init_fork(void);
 
 int	init_forks(t_philo *philos, t_philos_infos *pi)
 {
@@ -50,15 +50,16 @@ static int	give_fork_to_philos(t_philo *left_philo, t_philo *right_philo)
 	return (0);
 }
 
-static pthread_mutex_t	*init_fork(void)
+static t_fork	*init_fork(void)
 {
 	int				err;
-	pthread_mutex_t	*fork;
+	t_fork			*fork;
 
 	fork = malloc(sizeof(*fork));
 	if (!fork)
 		return (0);
-	err = pthread_mutex_init(fork, 0);
+	fork->fork_owner = 0;
+	err = pthread_mutex_init(&fork->fork_owner_lock, 0);
 	if (err)
 	{
 		free(fork);

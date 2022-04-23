@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:06:12 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/20 11:00:39 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/23 11:40:49 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ typedef enum e_actions
 
 int		ph_eat(t_philo *philo);
 int		ph_sleep(t_philo *philo);
-int		ph_take_fork(t_philo *philo, pthread_mutex_t *fork);
-void	ph_release_fork(pthread_mutex_t *fork);
+int		ph_take_fork(t_philo *philo, t_fork *fork);
+int		ph_try_to_take_fork(t_philo *philo, t_fork *fork);
+void	ph_release_fork(t_fork *fork);
 int		ph_think(t_philo *philo);
 
 #endif
