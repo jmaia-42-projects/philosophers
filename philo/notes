@@ -93,3 +93,19 @@ OUI
 EN FAIT
 On est pas obligé d'avoir un mutex qui représente une fourchette
 On peut avoir un mutex par 
+
+-----------------------------------------
+Hmm, bon tout ça, c'est fait, maintenant faudrait check la mort
+Et si au lieu de faire une action l'une après l'autre, on faisait du tour par tour ?
+Du style : un tour de boucle toutes les .5ms (Pour pouvoir récupérer les fourchettes quand ça pose et recup en même temps)
+Et à chaque tour de boucle, on fait des comptes :
+
+Premier tour, on faisait rien donc on va **commencer a manger**.
+	=> Pour ça, on tente de prendre une fourchette puis l'autre
+	=> Si y'a un moment c'est pas possible, on abandonne et on retestera au prochain tour de boucle
+Si on a les fourchettes, on attend, en incrémentant un compteur ou en notant le moment où on a commencé à manger
+Si on atteint la fin, on libère les fourchettes et on commence à dormir (toujours sur le même principe de compteur)
+Si on atteint la fin, on pense
+Et bam on recommence
+Ce qui est cool avec ce système, c'est qu'à chaque tour de boucle on peut vérifier si la simulation est terminée, si le philo est mort etc
+Allez, ça part
