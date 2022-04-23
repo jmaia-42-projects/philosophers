@@ -109,3 +109,20 @@ Si on atteint la fin, on pense
 Et bam on recommence
 Ce qui est cool avec ce système, c'est qu'à chaque tour de boucle on peut vérifier si la simulation est terminée, si le philo est mort etc
 Allez, ça part
+---------------------------------
+Si on a 2 philos :
+	On lance d'abord le premier philo et ensuite le 2e comme ça le premier philo peut chopper les 2 fourchettes
+Si on a 3 philos :
+	On lance d'abord le premier philo qui va pouvoir chopper ses 2 fourchettes. Ensuite on peut lancer les 2 dans n'importe quelle ordre, on s'en fou
+Si on a 4 philos :
+	On lance les pairs d'abord puis les impairs comme ça 2 fourchettes chacuns
+Si on a 5 philos :
+	1. On le lance d'abord comme ça il choppe ses 2 fourchettes
+	2. On attend un peu
+	3. On le lance en même temps que le 1 comme ça il choppe ses 2 fourchettes
+	4. On attend un peu
+	5. Alors, on lance en même temps ou pas ? Go tester
+		=> Si on le lance en même temps, quels sont les cas de figure ?
+		=> Si 1 à la priorité sur la fourchette en commun, alors il mange ainsi que 3. 5 va devoir attendre la libération
+
+	

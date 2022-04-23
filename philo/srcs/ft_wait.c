@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 12:13:41 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/20 11:37:30 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/23 19:57:46 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ft_wait_until(struct timeval time_point, struct timeval *p_ref_time)
 	gettimeofday(&now, 0);
 	while (!is_greater_than(time_diff(now, time_point), ref_time))
 	{
-		usleep(1);
+		usleep(10);
 		gettimeofday(&now, 0);
 	}
 }
