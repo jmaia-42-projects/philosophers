@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 14:49:42 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/23 14:55:59 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/23 15:41:05 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "fork.h"
 # include "philo.h"
 
+int	ph_die(t_philo *die);
 int	ph_eat(t_philo *philo);
 int	ph_sleep(t_philo *philo);
 int	ph_take_fork(t_philo *philo);

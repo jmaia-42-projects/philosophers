@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   do_actions.h                                       :+:      :+:    :+:   */
+/*   ph_die.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/12 17:07:45 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/23 16:01:14 by jmaia            ###   ########.fr       */
+/*   Created: 2022/04/23 15:38:49 by jmaia             #+#    #+#             */
+/*   Updated: 2022/04/23 15:59:17 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DO_ACTIONS_H
-# define DO_ACTIONS_H
+#include "actions/actions.h"
 
-# include "philo.h"
+#include "actions/do_actions.h"
+#include "philo.h"
 
-int	do_action(t_philo *philo, char *action, int bypass_lock);
-
-#endif
+int	ph_die(t_philo *philo)
+{
+	do_action(philo, DIE_MSG, 1);
+	return (0);
+}

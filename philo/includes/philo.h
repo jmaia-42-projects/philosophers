@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 10:10:03 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/23 14:10:53 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/23 16:19:50 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 typedef struct s_philo
 {
 	int					id;
-	int					last_eat;
+	unsigned long		last_eat;
 	int					n_meals;
 	t_fork				*left_fork;
 	t_fork				*right_fork;

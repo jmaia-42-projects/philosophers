@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 11:30:28 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/23 15:24:52 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/23 16:20:46 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,12 @@ static int	is_simulation_over(t_philo *philo)
 		&& philo->n_meals >= philo->state->pi.n_meals)
 		return (1);
 	pthread_mutex_lock(&philo->state->is_simulation_over_lock);
+	if (!philo->state->is_simulation_over && philo->last_eat
+		+ philo->state->pi.time_to_die < philo->timestamp_x10 / 10)
+	{
+		philo->state->is_simulation_over = 1;
+		ph_die(philo);
+	}
 	is_simulation_over = philo->state->is_simulation_over;
 	pthread_mutex_unlock(&philo->state->is_simulation_over_lock);
 	return (is_simulation_over);

@@ -14,6 +14,7 @@ SRCS_NOT_LIBFT	=	ft_atoi.c \
 SRCS		=	\
 				$(addprefix not_libft/, $(SRCS_NOT_LIBFT)) \
 				actions/do_action.c \
+				actions/ph_die.c \
 				actions/ph_eat.c \
 				actions/ph_fork.c \
 				actions/ph_sleep.c \
