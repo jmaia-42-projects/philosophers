@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 20:26:54 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/20 10:48:48 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/23 14:51:58 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,7 @@ static void	init_philo(t_philo *philo, int id, t_simulation_state *state)
 	philo->right_fork = 0;
 	philo->n_meals = 0;
 	philo->state = state;
-	philo->timestamp = 0;
+	philo->timestamp_x10 = 0;
+	philo->time_doing_action_x10 = 0;
+	philo->cur_action = TAKE_FORK_1;
 }

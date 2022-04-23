@@ -109,3 +109,35 @@ Si on atteint la fin, on pense
 Et bam on recommence
 Ce qui est cool avec ce système, c'est qu'à chaque tour de boucle on peut vérifier si la simulation est terminée, si le philo est mort etc
 Allez, ça part
+---
+Bon, je bloque un peu, il est l'heure de réfléchir
+J'ai donc ma boucle qui vérifie toutes les .5ms si la simulation est terminée.
+Elle effectue également l'action nécessaire pour le tour
+Parlons de ça justement
+Dans un tour de miam, on vérifie si on a les 2 fourchettes, si c'est pas le cas on les rećupère
+-----------------
+Mon code est dégueu, faut revoir tout ça
+Que fait-on toutes les .5ms ?
+Au tout début, on va vouloir récupérer les 2 fourchettes
+Ensuite on va vouloir manger
+Ensuite on va vouloir relacher les fourchettes
+Ensuite dormir
+Ensuite penser
+Et enfin, on recommence
+
+Comment prendre les fourchettes ?
+Si on n'a aucune fourchette de prise, alors on essaie de prendre la fourchette de gauche
+Si on réussi à prendre la fourchette de gauche, alors 
+
+En vrai, on pourrait séparer les 2 fourchettes, ça pourrait être plus simple
+
+Du coup, au lieu de prendre les 2 fourchettes, on prend celle de gauche puis celle de droite
+
+On essaie donc de prendre la fourchette de gauche et si on réussi on passe à la fourchette suivante
+
+On essaie ensuite de prendre la fourchette de droite et si on réussi on va manger
+
+Pour chaque début d'action, on va changer la variable time_doing_action, pour savoir combien de temps on a mis et surtout si c'est le début ou pas
+
+Donc, si on est dans un tour miam et que le time_doing_action_x10 == 0, alors on peut afficher le message parce-que c'est le tout début
+Si le time_doing_action_x10 nous dit qu'on a attendu assez longtemps, alors on va renvoyer une valeur qui permetttra de dire, ça y est c'est fini passe à la suite.

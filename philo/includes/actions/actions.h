@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:06:12 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/23 11:40:49 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/23 14:50:09 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,16 @@
 # define THINK_MSG		"is thinking"
 # define DIE_MSG		"died"
 
-# include "philo.h"
-
 typedef enum e_actions
 {
-	TAKE_FORK,
+	TAKE_FORK_1,
+	TAKE_FORK_2,
 	EAT,
+	RELEASE_FORK_2,
+	RELEASE_FORK_1,
 	SLEEP,
 	THINK,
 	DIE
 }	t_actions;
-
-int		ph_eat(t_philo *philo);
-int		ph_sleep(t_philo *philo);
-int		ph_take_fork(t_philo *philo, t_fork *fork);
-int		ph_try_to_take_fork(t_philo *philo, t_fork *fork);
-void	ph_release_fork(t_fork *fork);
-int		ph_think(t_philo *philo);
 
 #endif

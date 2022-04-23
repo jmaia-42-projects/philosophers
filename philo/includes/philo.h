@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 10:10:03 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/23 11:39:34 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/23 14:10:53 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <pthread.h>
 
+# include "actions/actions.h"
 # include "fork.h"
 # include "philos_infos.h"
 # include "simulation_state.h"
@@ -28,7 +29,9 @@ typedef struct s_philo
 	t_fork				*right_fork;
 	pthread_t			thread;
 	t_simulation_state	*state;
-	unsigned long		timestamp;
+	unsigned long		timestamp_x10;
+	int					time_doing_action_x10;
+	t_actions			cur_action;
 }	t_philo;
 
 #endif
