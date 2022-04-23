@@ -6,13 +6,15 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 12:13:32 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/23 17:58:46 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/23 19:19:30 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "actions/actions.h"
 
 #include "actions/do_actions.h"
+
+#include <stdio.h>
 
 int	ph_eat(t_philo *philo)
 {
