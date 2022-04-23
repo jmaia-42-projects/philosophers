@@ -18,6 +18,7 @@ SRCS		=	\
 				actions/ph_fork.c \
 				actions/ph_sleep.c \
 				actions/ph_think.c \
+				did_philo_starve_to_death.c \
 				main.c \
 				free_forks.c \
 				ft_wait.c \

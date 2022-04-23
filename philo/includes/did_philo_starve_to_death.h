@@ -1,34 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   did_philo_starve_to_death.h                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/16 10:10:03 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/23 19:08:11 by jmaia            ###   ########.fr       */
+/*   Created: 2022/04/23 19:02:23 by jmaia             #+#    #+#             */
+/*   Updated: 2022/04/23 19:07:52 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#ifndef DID_PHILO_STARVE_TO_DEATH_H
+# define DID_PHILO_STARVE_TO_DEATH_H
 
-# include <pthread.h>
+# include "philo.h"
 
-# include "fork.h"
-# include "philos_infos.h"
-# include "simulation_state.h"
-
-typedef struct s_philo
-{
-	int					id;
-	unsigned long		last_eat;
-	int					n_meals;
-	t_fork				*left_fork;
-	t_fork				*right_fork;
-	pthread_t			thread;
-	t_simulation_state	*state;
-	unsigned long		timestamp;
-}	t_philo;
+int	kill_philo_if_he_starve_to_death(t_philo *philo);
+int	did_philo_starve_to_death(t_philo *philo);
 
 #endif
