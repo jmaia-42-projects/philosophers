@@ -83,3 +83,13 @@ On peut pas simplement ajouter un time_to_eat après les mutexes parce-qu'on pou
 => En vrai, ouais y'a moyen, c'est une bonne idée, go tester ça
 => Hmm, par contre le soucis c'est qu'il va très probablement y avoir plein de philos qui vont poser leur fourchette en même temps => Du coup, ils vont vouloir set le temps en même temps et ça va ralentir le tout
 => Si on pense au fait que dans la partie bonus ça sera avec des process, on peut faire un diff arrondi entre 2 get_time_of_day
+--------------------------------------
+Bon, j'ai toujours le même soucis, c'est chiant
+L'idée de voir combien de temps s'est écoulé avant et après la prise de la fourchette n'a pas l'air de bien fonctionner
+On peut pas avoir un thread maitre du temps qui s'occupera de gérer l'ecoulement du temps parce-que pour la partie bonus, on pourra pas faire ça
+C'est chiant que les mutexes soient bloquant en fait
+PUTAIN
+OUI
+EN FAIT
+On est pas obligé d'avoir un mutex qui représente une fourchette
+On peut avoir un mutex par 
