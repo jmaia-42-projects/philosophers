@@ -28,6 +28,7 @@ SRCS		=	\
 				start_simulation.c \
 				utils/ft_strcpy.c \
 				utils/nbrlen.c \
+				utils/timeval_ops.c \
 				wait_philos.c
 
 _OBJS		=	${SRCS:.c=.o}

@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 12:13:41 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/12 14:59:28 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/20 11:37:30 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 #include <unistd.h>
 
 #include "ft_wait.h"
-
-static int				is_greater_than(struct timeval a, struct timeval b);
-static struct timeval	time_diff(struct timeval a, struct timeval b);
+#include "timeval_ops.h"
 
 void	ft_wait_ms_until(unsigned long time_point_ms,
 	struct timeval *p_ref_time)
@@ -41,27 +39,4 @@ void	ft_wait_until(struct timeval time_point, struct timeval *p_ref_time)
 		usleep(1);
 		gettimeofday(&now, 0);
 	}
-}
-
-static int	is_greater_than(struct timeval a, struct timeval b)
-{
-	if (a.tv_sec > b.tv_sec)
-		return (1);
-	if (a.tv_sec == b.tv_sec && a.tv_usec > b.tv_usec)
-		return (1);
-	return (0);
-}
-
-static struct timeval	time_diff(struct timeval a, struct timeval b)
-{
-	struct timeval	diff;
-
-	diff.tv_sec = a.tv_sec - b.tv_sec;
-	diff.tv_usec = a.tv_usec - b.tv_usec;
-	while (diff.tv_usec < 0)
-	{
-		diff.tv_usec += 1000000;
-		diff.tv_sec--;
-	}
-	return (diff);
 }

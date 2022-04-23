@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   timeval_ops.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/16 10:10:03 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/23 11:20:30 by jmaia            ###   ########.fr       */
+/*   Created: 2022/04/20 11:36:21 by jmaia             #+#    #+#             */
+/*   Updated: 2022/04/20 11:39:37 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#ifndef TIMEVAL_OPS_H
+# define TIMEVAL_OPS_H
 
-# include <pthread.h>
+# include <sys/time.h>
 
-# include "philos_infos.h"
-# include "simulation_state.h"
-
-typedef struct s_philo
-{
-	int					id;
-	int					last_eat;
-	int					n_meals;
-	pthread_mutex_t		*left_fork;
-	pthread_mutex_t		*right_fork;
-	pthread_t			thread;
-	t_simulation_state	*state;
-	unsigned long		timestamp;
-}	t_philo;
+int				is_greater_than(struct timeval a, struct timeval b);
+struct timeval	time_diff(struct timeval a, struct timeval b);
 
 #endif
