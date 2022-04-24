@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 18:12:53 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/24 22:15:34 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/24 23:33:08 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	init_simulation(t_simulation_state **state, t_philo **philos,
 				int ac, char **av);
 static int	init_philos_with_forks(t_philo **philos, t_simulation_state *state);
 static void	free_simulation(t_philo *philos, t_simulation_state *state);
-static void	close_sems(void);
+static void	close_sems(t_simulation_state *state);
 
 int	main(int ac, char **av)
 {
@@ -48,10 +48,10 @@ static int	init_simulation(t_simulation_state **state, t_philo **philos,
 {
 	int	err;
 
-	close_sems();
 	*state = malloc(sizeof(**state));
 	if (!*state)
 		return (1);
+	close_sems(*state);
 	err = parse_args_and_print_error(&(*state)->pi, ac, av);
 	if (err)
 		return (2);
@@ -85,15 +85,18 @@ static int	init_philos_with_forks(t_philo **philos, t_simulation_state *state)
 
 static void	free_simulation(t_philo	*philos, t_simulation_state *state)
 {
-	close_sems();
+	close_sems(state);
 	free_forks(philos);
 	free(philos);
 	free(state);
 }
 
-static void	close_sems(void)
+static void	close_sems(t_simulation_state *state)
 {
 	sem_unlink("/ph_end_simulation_lock");
 	sem_unlink("/ph_forks");
 	sem_unlink("/ph_write_lock");
+	sem_close(state->end_simulation_lock);
+	sem_close(state->forks);
+	sem_close(state->write_lock);
 }

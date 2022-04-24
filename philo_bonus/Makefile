@@ -36,7 +36,7 @@ _OBJS		=	${SRCS:.c=.o}
 OBJS		=	$(addprefix build/, $(_OBJS))
 
 CC			=	clang
-CFLAGS		=	-Wall -Wextra -Werror -pthread -g3
+CFLAGS		=	-Wall -Wextra -Werror -pthread
 INCLUDE		=	-I includes/
 LIBS		=
 
