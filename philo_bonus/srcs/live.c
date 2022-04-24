@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 11:30:28 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/24 23:25:50 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/24 23:29:11 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 
 static void	wait_till_next_meal(t_philo *philo);
 
-//#include <stdio.h>
-
 void	*live(void *param)
 {
 	t_philo	*philo;
@@ -25,10 +23,6 @@ void	*live(void *param)
 	philo = (t_philo *)param;
 	while (1)
 	{
-//		struct timeval now;
-
-//		gettimeofday(&now, 0);
-//		printf("Let's %d try now (%ld, %ld)\n", philo->id,  now.tv_sec, now.tv_usec);
 		wait_till_next_meal(philo);
 		ph_eat(philo);
 		ph_sleep(philo);
@@ -36,8 +30,6 @@ void	*live(void *param)
 	}
 	return (0);
 }
-
-#include <stdio.h>
 
 static void	wait_till_next_meal(t_philo *philo)
 {
