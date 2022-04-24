@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:33:22 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/23 19:12:46 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/24 14:35:25 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,9 @@ int	do_action(t_philo *philo, unsigned long duration, char *action)
 
 	err = 0;
 	kill_philo_if_he_starve_to_death(philo);
-	pthread_mutex_lock(&philo->state->is_simulation_over_lock);
-	if (!philo->state->is_simulation_over)
-		err = print_action(philo->timestamp, philo->id, action);
-	pthread_mutex_unlock(&philo->state->is_simulation_over_lock);
+	sem_wait(philo->state->write_lock);
+	err = print_action(philo->timestamp, philo->id, action);
+	sem_post(philo->state->write_lock);
 	philo->timestamp += duration;
 	ft_wait_ms_until(philo->timestamp, 0);
 	return (err);

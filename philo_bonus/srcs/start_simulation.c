@@ -6,13 +6,14 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 20:06:10 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/20 10:41:12 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/24 14:32:11 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "simulation.h"
 
 #include <sys/time.h>
+#include <unistd.h>
 
 #include "ft_wait.h"
 
@@ -21,17 +22,24 @@ static void	set_ref_time(void);
 int	start_simulation(t_philo *philos, t_simulation_state *state)
 {
 	int	i;
-	int	err;
+	int	pid;
 
 	i = 0;
-	err = 0;
 	set_ref_time();
-	while (i < state->pi.n_philos && !err)
+	pid = 0;
+	while (i < state->pi.n_philos && pid != -1)
 	{
-		err = pthread_create(&philos[i].thread, 0, &live, &philos[i]);
+		pid = fork();
+		if (pid == 0)
+		{
+			live(&philos[i]);
+			break;
+		}
+		else
+			philos[i].pid = pid;
 		i++;
 	}
-	return (err != 0);
+	return (pid != -1);
 }
 
 static void	set_ref_time(void)

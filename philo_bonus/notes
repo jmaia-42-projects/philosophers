@@ -127,3 +127,18 @@ Si on a 5 philos :
 -------------------------------------
 Pour le temps, pourquoi je me base pas directement sur le gettimeofday déjà ?
 En tout cas, je pourrais m'en servir pour faire des tests en regardant le décalage entre mon timestamp et le vrai temps
+-------------------------------------
+Hmm, bon, je vais lancer tous mes philos via des forks
+Une fois que c'est fait, je vais attendre qu'un meurt via un sem_wait (Faudra faire un sem_post depuis le philo qui est mort)
+- Sem_wait sur le semaphore de l'écriture pour le lock
+- Affichage du message de mort
+- Sem_post pour dire que ça y est, y'en a un qui est mort
+// On ne réactive pas le sémaphore de l'écriture, plus personne ne doit pouvoir en faire quelque chose
+Hmm, faut que je trouve un moyen pour chopper une fourchette et vérifier la mort en même temps
+Parce-que le truc c'est que si je wait une fourchette, et que je fini par mourir, ça va pas le faire.
+Faut trouver un moyen de pas rester bloquer quoi
+Bon au pire on verra ça après, y'a ptêt moyen de se dire que ça n'arrivera jamais.
+Ahh ouais mais le soucis du coup c'est que si un philo attend et meurt pendant ce temps là, il va afficher son message de mort bien trop tard.
+J'aime pas l'idée de bloquer un process en vrai, faudrait faire en sorte de les libérer d'une certaine façon
+Bon aller, c'est chiant, on va faire comme tout le monde on va créer un thread par philo en plus pour vérifier la mort
+=> Wait, trouve un cas ou ça peut être possible

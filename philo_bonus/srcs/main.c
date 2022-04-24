@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 18:12:53 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/23 21:46:49 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/24 17:04:01 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 static int	init_simulation(t_simulation_state **state, t_philo **philos,
 				int ac, char **av);
 static int	init_philos_with_forks(t_philo **philos, t_simulation_state *state);
-static int	init_simulation_over_handling(t_simulation_state *state);
 static void	free_simulation(t_philo *philos, t_simulation_state *state);
 
 int	main(int ac, char **av)
@@ -55,12 +54,6 @@ static int	init_simulation(t_simulation_state **state, t_philo **philos,
 	err = init_philos_with_forks(philos, *state);
 	if (err)
 		return (err);
-	err = init_simulation_over_handling(*state);
-	if (err)
-	{
-		write(2, "An error occured while initializing simulation.\n", 48);
-		return (5);
-	}
 	return (0);
 }
 
@@ -74,21 +67,12 @@ static int	init_philos_with_forks(t_philo **philos, t_simulation_state *state)
 		write(2, "An error occured while initializing philos.\n", 44);
 		return (3);
 	}
-	err = init_forks(*philos, &state->pi);
+	err = init_forks(*philos);
 	if (err)
 	{
 		write(2, "An error occured while initializing forks.\n", 43);
 		return (4);
 	}
-	return (err);
-}
-
-static int	init_simulation_over_handling(t_simulation_state *state)
-{
-	int	err;
-
-	state->is_simulation_over = 0;
-	err = pthread_mutex_init(&state->is_simulation_over_lock, 0);
 	return (err);
 }
 

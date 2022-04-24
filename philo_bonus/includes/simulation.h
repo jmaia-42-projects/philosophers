@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 19:38:31 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/20 09:59:56 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/24 17:02:21 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "philos_infos.h"
 # include "simulation_state.h"
 
-int		init_forks(t_philo *philos, t_philos_infos *pi);
+int		init_forks(t_philo *philos);
 int		init_philos(t_philo **philos, t_simulation_state *state);
 int		start_simulation(t_philo *philos, t_simulation_state *state);
 void	*live(void *param);
