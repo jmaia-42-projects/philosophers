@@ -150,3 +150,13 @@ Je vais dormir pendant 100ms
 Je pense
 Il me reste encore 200ms avant de clamser
 Je vais attendre 100ms avant de recommencer à manger
+---------------------
+Alors, s'il y a un nombre pair de personnes => osef je crois
+S'il y a un nombre impair de philos
+=> 1er service, 2e service, 3 service
+0 => 1er service mange pendant eat_ms;
+eat_ms => 2e service mange pendant eat_ms et 1er service dort pendant sleep_ms
+2eat_ms => 3e service mange pendant eat_ms et 2e service dort pendant sleep_ms
+3eat_ms => 1er service mange pendant eat_msg et 3e service dort pendant sleep_ms
+
+Au total, le 1er service doit attendre 2*eat_ms avant de remanger

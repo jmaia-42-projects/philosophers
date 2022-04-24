@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 10:54:14 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/24 22:32:48 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/24 22:57:11 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,25 @@
 #include "actions/do_actions.h"
 #include "timeval_ops.h"
 
-#include <stdio.h>
+//#include <stdio.h>
 
 int	ph_take_fork(t_philo *philo)
 {
 	struct timeval	after;
 	struct timeval	before;
 	struct timeval	diff;
+	unsigned long	ms_diff;
 
 	gettimeofday(&before, 0);
 	sem_wait(philo->state->forks);
 	gettimeofday(&after, 0);
 	diff = time_diff(after, before);
 	if (diff.tv_sec > 0 || diff.tv_usec > 200)
-		philo->timestamp += philo->state->pi.time_to_eat;
+	{
+		ms_diff = diff.tv_sec * 1000 + diff.tv_usec / 1000;
+//		printf("Philo %d waited for fork !\n", philo->id);
+		philo->timestamp += philo->state->pi.time_to_eat * (ms_diff / philo->state->pi.time_to_eat + 1);
+	}
 	do_action(philo, 0, TAKE_FORK_MSG);
 	return (0);
 }
