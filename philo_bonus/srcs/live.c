@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 11:30:28 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/24 23:23:39 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/24 23:25:50 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ static void	wait_till_next_meal(t_philo *philo)
 
 	if (philo->state->pi.n_philos % 2 != 1)
 	{
-		philo->last_eat = 0;
+		if (philo->last_eat == (unsigned long) -1)
+			philo->last_eat = 0;
 		return ;
 	}
 	if (philo->last_eat == (unsigned long) -1)
