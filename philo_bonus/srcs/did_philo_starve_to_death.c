@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 19:01:53 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/24 16:54:56 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/24 22:39:58 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	kill_philo_if_he_starve_to_death(t_philo *philo)
 	}
 	return (1);
 }
+
+#include <stdio.h>
 
 int	did_philo_starve_to_death(t_philo *philo)
 {
