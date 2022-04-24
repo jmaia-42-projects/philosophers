@@ -1,0 +1,144 @@
+Bon alors, comment qu'on fait pour Philo ?
+Le philo doit pouvoir manger, penser et dormir
+
+Et si on faisait une fonction pour chaque action ?
+Ça m'a l'air chiant, go faire un fonction générale avec un temps à attendre et un message à afficher
+Hmm, mais c'est chiant du coup par rapport aux forks
+
+Hmm, allez go faire une fonction pour chaque action
+=> Fork => À voir, ça doit prendre des forks
+=> Eat => Ça affiche le message et ça attend
+=> Sleep => Ça affiche le message et ça attend
+=> Think => Ça affiche le message
+
+Au tout début, on va init les forks
+Au tout début, on va init les philos
+
+Chaque philo a un id, c'est utile askip
+
+
+Alors, situation réelle :
+Un philo, a une fourchette à sa gauche et une fourchette à sa droite, il devrait y avoir un truc du genre stocké quelque part dans une structure pour chaque philo
+Dans le cas où il y a qu'un seul philo, on peut considérer qu'il n'y a qu'une seule fourchette à gauche et pas de fouchette à droite.
+
+Va falloir parse les arguments aussi
+./philo <n_philos> <time_to_die> <time_to_eat> <time_to_sleep> [n_meals]
+=> Bam, ça part dans une structure info ou un truc comme ça
+
+Faudra penser à un moyen qu'ils n'utilisent pas chacun une fourchette sans alterner
+	=> Y'a l'histoire du commencement quelques ms plus tard
+Par contre, du coup, il y a toujours le truc du nombre impair de philo
+	=> Ça, va falloir faire 3 services ou un truc comme ça
+		=> Imaginons 3 philos
+		=> Il y a donc 3 fourchettes
+		=> Pour que chaque philo puisse manger il a besoin de 2 fourchettes
+		=> Donc, ils vont pouvoir manger que un par un => 3 services
+		=> À voir comment organiser ça
+
+--------------------------------------------------
+------ Ordre des trucs -------
+- D'abord, ça parse
+	+ Si, y'a un soucis au moment du parse, erreur + fin de simulation
+	+ Ça met l'ensemble dans une structure pour l'utiliser dans les prochaines étapes
+- Ensuite, on va faire un tableau de philo ou un truc du genre
+	+ Le but, c'est d'avoir une stucture par philo avec toutes les informations que chaque philo aura besoin (Va falloir malloc pour pas faire de la nerde)
+		+ ID du philo
+		+ Fourchette de gauche
+		+ Fourchette de droite
+		+ Last eat
+		+ (Ça m'a l'air pas mal, à voir pour la suite s'il faut autre chose encore)
+- Bam, ensuite c'est les fourchettes, on en alloue le même nombre que le nombre de philos et on fait en sorte de remplir les structures philos avec des fourchettes
+- Hmm, et là normalement tout est bon, on peut faire la boucle qui lance les threads avec la boucle de vie (Go l'appeler live) et la structure philo qui va avec
+- Juste après, faut attendre les philos (Il y a 2 moyens de faire, y'a l'histoire avec et sans détachement)
+	+ En mode joinable
+		+ Va falloir join les threads de tous les philos à la fin, en attendant qu'ils finissent, c'est chiant
+		+ On peut chopper l'exit status mais du coup ca osef
+	+ En mode détaché
+		+ On peut simplement attendre qu'un philo soit mort et directement exit à la fin
+		+ Hmm, par contre du coup ça m'a l'air chiant pour destroy tous les mutexes s'il y a encore des philos qui les utilisent
+		+ Azi ça sera chiant, on fait pas ça
+- Et là on free tout le bazar :)
+- BAM PHILO EST FINI MA GUEULE
+-----------------------------------------
+Bon, petit soucis, on peut pas avoir un temps propre à chaque philo parce-qu'avec les mutexes il va y avoir des décalages
+Il faudrait donc, un temps global, protégé par un mutex
+Ce qui pourrait être fait, c'est qu'après chaque wait_ms, on vient modifier cette valeur
+Le soucis, c'est : Qu'est-ce qu'il se passe si juste avant de modifier la valeur, un philo veut attendre aussi
+=> Bah, il est niqué
+Pareil s'il veut attendre entre 2 attente
+Du style :
+- Philo 1 attend 60ms
+- Philo 2 attend 30ms
+- Philo 2 attend 30ms
+=> À tout moment, ça foire
+
+Comment faire, comment faire, comment faire ?
+ALORS, Reprenons
+Le but, c'est de pouvoir suivre l'évolution du temps
+Sans réelle attente en dehors du ft_wait, il suffit simplement de faire la somme du temps qu'on a attendu.
+Le soucis vient du fait qu'on peut attendre en dehors des ft_wait => LES MUTEXES
+En tout cas, c'est que les mutexes des forks
+On peut pas simplement ajouter un time_to_eat après les mutexes parce-qu'on pourrait avoir des philos en décalé et du coup, ça serait pas exactement time_to_eat
+À la limite, il faudrait faire en sorte de définir le temps actuel juste avant que le philo pose sa fourchette
+=> En vrai, ouais y'a moyen, c'est une bonne idée, go tester ça
+=> Hmm, par contre le soucis c'est qu'il va très probablement y avoir plein de philos qui vont poser leur fourchette en même temps => Du coup, ils vont vouloir set le temps en même temps et ça va ralentir le tout
+=> Si on pense au fait que dans la partie bonus ça sera avec des process, on peut faire un diff arrondi entre 2 get_time_of_day
+--------------------------------------
+Bon, j'ai toujours le même soucis, c'est chiant
+L'idée de voir combien de temps s'est écoulé avant et après la prise de la fourchette n'a pas l'air de bien fonctionner
+On peut pas avoir un thread maitre du temps qui s'occupera de gérer l'ecoulement du temps parce-que pour la partie bonus, on pourra pas faire ça
+C'est chiant que les mutexes soient bloquant en fait
+PUTAIN
+OUI
+EN FAIT
+On est pas obligé d'avoir un mutex qui représente une fourchette
+On peut avoir un mutex par 
+
+-----------------------------------------
+Hmm, bon tout ça, c'est fait, maintenant faudrait check la mort
+Et si au lieu de faire une action l'une après l'autre, on faisait du tour par tour ?
+Du style : un tour de boucle toutes les .5ms (Pour pouvoir récupérer les fourchettes quand ça pose et recup en même temps)
+Et à chaque tour de boucle, on fait des comptes :
+
+Premier tour, on faisait rien donc on va **commencer a manger**.
+	=> Pour ça, on tente de prendre une fourchette puis l'autre
+	=> Si y'a un moment c'est pas possible, on abandonne et on retestera au prochain tour de boucle
+Si on a les fourchettes, on attend, en incrémentant un compteur ou en notant le moment où on a commencé à manger
+Si on atteint la fin, on libère les fourchettes et on commence à dormir (toujours sur le même principe de compteur)
+Si on atteint la fin, on pense
+Et bam on recommence
+Ce qui est cool avec ce système, c'est qu'à chaque tour de boucle on peut vérifier si la simulation est terminée, si le philo est mort etc
+Allez, ça part
+---------------------------------
+Si on a 2 philos :
+	On lance d'abord le premier philo et ensuite le 2e comme ça le premier philo peut chopper les 2 fourchettes
+Si on a 3 philos :
+	On lance d'abord le premier philo qui va pouvoir chopper ses 2 fourchettes. Ensuite on peut lancer les 2 dans n'importe quelle ordre, on s'en fou
+Si on a 4 philos :
+	On lance les pairs d'abord puis les impairs comme ça 2 fourchettes chacuns
+Si on a 5 philos :
+	1. On le lance d'abord comme ça il choppe ses 2 fourchettes
+	2. On attend un peu
+	3. On le lance en même temps que le 1 comme ça il choppe ses 2 fourchettes
+	4. On attend un peu
+	5. Alors, on lance en même temps ou pas ? Go tester
+		=> Si on le lance en même temps, quels sont les cas de figure ?
+		=> Si 1 à la priorité sur la fourchette en commun, alors il mange ainsi que 3. 5 va devoir attendre la libération
+-------------------------------------
+Pour le temps, pourquoi je me base pas directement sur le gettimeofday déjà ?
+En tout cas, je pourrais m'en servir pour faire des tests en regardant le décalage entre mon timestamp et le vrai temps
+-------------------------------------
+Hmm, bon, je vais lancer tous mes philos via des forks
+Une fois que c'est fait, je vais attendre qu'un meurt via un sem_wait (Faudra faire un sem_post depuis le philo qui est mort)
+- Sem_wait sur le semaphore de l'écriture pour le lock
+- Affichage du message de mort
+- Sem_post pour dire que ça y est, y'en a un qui est mort
+// On ne réactive pas le sémaphore de l'écriture, plus personne ne doit pouvoir en faire quelque chose
+Hmm, faut que je trouve un moyen pour chopper une fourchette et vérifier la mort en même temps
+Parce-que le truc c'est que si je wait une fourchette, et que je fini par mourir, ça va pas le faire.
+Faut trouver un moyen de pas rester bloquer quoi
+Bon au pire on verra ça après, y'a ptêt moyen de se dire que ça n'arrivera jamais.
+Ahh ouais mais le soucis du coup c'est que si un philo attend et meurt pendant ce temps là, il va afficher son message de mort bien trop tard.
+J'aime pas l'idée de bloquer un process en vrai, faudrait faire en sorte de les libérer d'une certaine façon
+Bon aller, c'est chiant, on va faire comme tout le monde on va créer un thread par philo en plus pour vérifier la mort
+=> Wait, trouve un cas ou ça peut être possible

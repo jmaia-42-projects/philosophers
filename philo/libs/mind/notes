@@ -1,0 +1,17 @@
+Alors, il faudrait un GC, ça serait vraiment pratique
+
+On aurait une fonction ft_malloc et ft_free qui permettrait de malloc et de free en ajoutant/supprimant les données d'une liste
+Je veux pas un truc dégueulasse, donc tout ce qui est alloué par ft_malloc, devra être ft_free avant la fin de la fonction : le but n'est pas de tout free à la fin du programme comme une merde
+
+On aurait une structure `mind', qui contiendrait une liste chaînée/un dynamic_buffer
+Cette structure il faudrait l'init au début
+
+- mind_init (Initialise l'esprit)
+- mind_malloc
+- mind_free
+- mind_add (Ajoute un élément dans la liste préalablement malloc)
+- mind_remove (Retire un élément de la liste sans le free)
+- mind_blow (Free mind + free de tous les éléments)
+
+Mais du coup il se passe quoi si le malloc de mind_malloc foire ?
+Boh, go dab
