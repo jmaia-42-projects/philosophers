@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 20:06:10 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/24 18:47:00 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/24 22:15:57 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	start_simulation(t_philo *philos, t_simulation_state *state)
 		if (pid == 0)
 		{
 			live(&philos[i]);
-			break;
+			break ;
 		}
 		else
 			philos[i].pid = pid;
