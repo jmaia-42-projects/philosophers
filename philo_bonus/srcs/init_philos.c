@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 20:26:54 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/24 14:29:12 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/24 23:23:05 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	init_philos(t_philo **philos, t_simulation_state *state)
 static void	init_philo(t_philo *philo, int id, t_simulation_state *state)
 {
 	philo->id = id;
-	philo->last_eat = 0;
+	philo->last_eat = -1;
 	philo->n_meals = 0;
 	philo->state = state;
 	philo->timestamp = 0;
