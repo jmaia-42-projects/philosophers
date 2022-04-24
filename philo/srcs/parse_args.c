@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 14:45:27 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/18 19:59:03 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/20 10:16:12 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 static int	are_args_valid(int ac, char **av);
 
-int	parse_args_and_print_error(t_philos_infos **pi, int ac, char **av)
+int	parse_args_and_print_error(t_philos_infos *pi, int ac, char **av)
 {
 	int	err;
 
@@ -26,19 +26,18 @@ int	parse_args_and_print_error(t_philos_infos **pi, int ac, char **av)
 	return (err);
 }
 
-int	parse_args(t_philos_infos **pi, int ac, char **av)
+int	parse_args(t_philos_infos *pi, int ac, char **av)
 {
 	if (!are_args_valid(ac, av))
 		return (1);
-	*pi = malloc(sizeof(**pi));
-	if (!*pi)
-		return (1);
-	(*pi)->n_philos = ft_atoi(av[1]);
-	(*pi)->time_to_die = ft_atoi(av[2]);
-	(*pi)->time_to_eat = ft_atoi(av[3]);
-	(*pi)->time_to_sleep = ft_atoi(av[4]);
+	pi->n_philos = ft_atoi(av[1]);
+	pi->time_to_die = ft_atoi(av[2]);
+	pi->time_to_eat = ft_atoi(av[3]);
+	pi->time_to_sleep = ft_atoi(av[4]);
 	if (ac > 5)
-		(*pi)->n_meals = ft_atoi(av[5]);
+		pi->n_meals = ft_atoi(av[5]);
+	else
+		pi->n_meals = -1;
 	return (0);
 }
 

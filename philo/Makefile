@@ -14,19 +14,29 @@ SRCS_NOT_LIBFT	=	ft_atoi.c \
 SRCS		=	\
 				$(addprefix not_libft/, $(SRCS_NOT_LIBFT)) \
 				actions/do_action.c \
+				actions/ph_eat.c \
+				actions/ph_fork.c \
+				actions/ph_sleep.c \
+				actions/ph_think.c \
+				did_philo_starve_to_death.c \
 				main.c \
+				free_forks.c \
 				ft_wait.c \
 				init_forks.c \
 				init_philos.c \
+				live.c \
 				parse_args.c \
+				start_simulation.c \
 				utils/ft_strcpy.c \
-				utils/nbrlen.c
+				utils/nbrlen.c \
+				utils/timeval_ops.c \
+				wait_philos.c
 
 _OBJS		=	${SRCS:.c=.o}
 OBJS		=	$(addprefix build/, $(_OBJS))
 
-CC			=	cc
-CFLAGS		=	-g3 -Wall -Werror -Wextra
+CC			=	clang
+CFLAGS		=	-Wall -Wextra -Werror -pthread
 INCLUDE		=	-I includes/
 LIBS		=	libs/mind/mind.a
 

@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   ph_eat.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/16 10:10:03 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/23 19:08:11 by jmaia            ###   ########.fr       */
+/*   Created: 2022/04/19 12:13:32 by jmaia             #+#    #+#             */
+/*   Updated: 2022/04/23 21:22:35 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#include "actions/actions.h"
 
-# include <pthread.h>
+#include "actions/do_actions.h"
 
-# include "fork.h"
-# include "philos_infos.h"
-# include "simulation_state.h"
+#include <stdio.h>
 
-typedef struct s_philo
+int	ph_eat(t_philo *philo)
 {
-	int					id;
-	unsigned long		last_eat;
-	int					n_meals;
-	t_fork				*left_fork;
-	t_fork				*right_fork;
-	pthread_t			thread;
-	t_simulation_state	*state;
-	unsigned long		timestamp;
-}	t_philo;
+	int	err;
 
-#endif
+	ph_take_fork(philo, philo->left_fork);
+	ph_take_fork(philo, philo->right_fork);
+	philo->last_eat = philo->timestamp;
+	err = do_action(philo, philo->state->pi.time_to_eat, EAT_MSG);
+	ph_release_fork(philo->left_fork);
+	ph_release_fork(philo->right_fork);
+	philo->n_meals++;
+	return (err);
+}

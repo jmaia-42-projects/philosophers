@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   do_actions.h                                       :+:      :+:    :+:   */
+/*   ph_sleep.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/12 17:07:45 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/23 19:13:47 by jmaia            ###   ########.fr       */
+/*   Created: 2022/04/19 12:13:32 by jmaia             #+#    #+#             */
+/*   Updated: 2022/04/20 10:29:47 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DO_ACTIONS_H
-# define DO_ACTIONS_H
+#include "actions/actions.h"
 
-# include "actions.h"
+#include "actions/do_actions.h"
 
-int	do_action(t_philo *philo, unsigned long duration, char *action);
-int	print_action(unsigned long timestamp, unsigned int philo_i,
-		char *action);
+int	ph_sleep(t_philo *philo)
+{
+	int	err;
 
-#endif
+	err = do_action(philo, philo->state->pi.time_to_sleep, SLEEP_MSG);
+	return (err);
+}

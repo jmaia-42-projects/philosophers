@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   do_actions.h                                       :+:      :+:    :+:   */
+/*   wait_philos.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/12 17:07:45 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/23 19:13:47 by jmaia            ###   ########.fr       */
+/*   Created: 2022/04/19 11:43:39 by jmaia             #+#    #+#             */
+/*   Updated: 2022/04/20 09:50:38 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DO_ACTIONS_H
-# define DO_ACTIONS_H
+#include "simulation.h"
 
-# include "actions.h"
+void	wait_philos(t_philo *philos, t_simulation_state *state)
+{
+	int	i;
 
-int	do_action(t_philo *philo, unsigned long duration, char *action);
-int	print_action(unsigned long timestamp, unsigned int philo_i,
-		char *action);
-
-#endif
+	i = 0;
+	while (i < state->pi.n_philos)
+	{
+		pthread_join(philos[i].thread, 0);
+		i++;
+	}
+}

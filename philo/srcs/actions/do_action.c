@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:33:22 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/12 18:29:32 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/23 19:12:46 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,30 @@
 #include <unistd.h>
 
 #include "actions/do_actions.h"
+#include "did_philo_starve_to_death.h"
+#include "ft_wait.h"
 #include "utils.h"
 
 static void	set_nbr_and_move(char **str, unsigned long nbr);
 static void	set_nbr(char **str, unsigned long nbr);
 
-int	do_action(unsigned long timestamp, unsigned int philo_i, char *action)
+int	do_action(t_philo *philo, unsigned long duration, char *action)
+{
+	int	err;
+
+	err = 0;
+	kill_philo_if_he_starve_to_death(philo);
+	pthread_mutex_lock(&philo->state->is_simulation_over_lock);
+	if (!philo->state->is_simulation_over)
+		err = print_action(philo->timestamp, philo->id, action);
+	pthread_mutex_unlock(&philo->state->is_simulation_over_lock);
+	philo->timestamp += duration;
+	ft_wait_ms_until(philo->timestamp, 0);
+	return (err);
+}
+
+int	print_action(unsigned long timestamp, unsigned int philo_i,
+				char *action)
 {
 	char	*cur_msg;
 	char	*msg;
