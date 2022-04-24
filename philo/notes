@@ -124,5 +124,6 @@ Si on a 5 philos :
 	5. Alors, on lance en même temps ou pas ? Go tester
 		=> Si on le lance en même temps, quels sont les cas de figure ?
 		=> Si 1 à la priorité sur la fourchette en commun, alors il mange ainsi que 3. 5 va devoir attendre la libération
-
-	
+-------------------------------------
+Pour le temps, pourquoi je me base pas directement sur le gettimeofday déjà ?
+En tout cas, je pourrais m'en servir pour faire des tests en regardant le décalage entre mon timestamp et le vrai temps
