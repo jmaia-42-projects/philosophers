@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:33:22 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/24 14:35:25 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/24 20:55:36 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,18 @@
 static void	set_nbr_and_move(char **str, unsigned long nbr);
 static void	set_nbr(char **str, unsigned long nbr);
 
+#include <stdio.h>
+
 int	do_action(t_philo *philo, unsigned long duration, char *action)
 {
 	int	err;
 
 	err = 0;
+//	printf("Pouet oui %d\n", philo->id);
 	kill_philo_if_he_starve_to_death(philo);
+//	printf("Pouet non %d\n", philo->id);
 	sem_wait(philo->state->write_lock);
+//	printf("Pouet oui ou non %d\n", philo->id);
 	err = print_action(philo->timestamp, philo->id, action);
 	sem_post(philo->state->write_lock);
 	philo->timestamp += duration;

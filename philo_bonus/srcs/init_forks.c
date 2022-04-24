@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 20:38:00 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/24 17:02:59 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/24 20:51:06 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 
-int	init_forks(t_philo *philos)
+#include <stdio.h>
+
+int	init_forks(t_simulation_state *state)
 {
-	sem_open("ph_forks", O_CREAT, O_RDWR, philos->state->pi.n_philos);
+	state->forks = sem_open("/ph_forks", O_CREAT, 0644, state->pi.n_philos);
 	return (0);
 }
