@@ -92,5 +92,7 @@ relibs	:
 
 reall	: relibs re
 
+bonus	:	all
 
-.PHONY	:	all libs clean cleanlibs cleanall fclean fcleanlibs fcleanall re relibs reall
+
+.PHONY	:	all libs clean cleanlibs cleanall fclean fcleanlibs fcleanall re relibs reall bonus
