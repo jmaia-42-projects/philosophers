@@ -142,3 +142,11 @@ Ahh ouais mais le soucis du coup c'est que si un philo attend et meurt pendant c
 J'aime pas l'idée de bloquer un process en vrai, faudrait faire en sorte de les libérer d'une certaine façon
 Bon aller, c'est chiant, on va faire comme tout le monde on va créer un thread par philo en plus pour vérifier la mort
 => Wait, trouve un cas ou ça peut être possible
+----------------------
+Hmm, c'est chiant, quand c'est un nombre impair, y'en a certains qui veulent manger trop vite.
+Au pire, je peux toujours attendre pile un certain temps
+Par exemple, je viens de manger pendant 100ms
+Je vais dormir pendant 100ms
+Je pense
+Il me reste encore 200ms avant de clamser
+Je vais attendre 100ms avant de recommencer à manger

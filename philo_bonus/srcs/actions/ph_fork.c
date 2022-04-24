@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 10:54:14 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/24 22:13:04 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/04/24 22:32:48 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 
 #include "actions/do_actions.h"
 #include "timeval_ops.h"
+
+#include <stdio.h>
 
 int	ph_take_fork(t_philo *philo)
 {

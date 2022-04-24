@@ -1,4 +1,6 @@
 philo
+philo_bonus
 !philo/
+!philo_bonus/
 build/
 *.sw?
