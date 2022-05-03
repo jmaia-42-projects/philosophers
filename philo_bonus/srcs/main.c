@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 18:12:53 by jmaia             #+#    #+#             */
-/*   Updated: 2022/05/03 11:26:01 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/05/03 12:09:28 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,16 @@ static void	close_sems(t_simulation_state *state);
 int	main(int ac, char **av)
 {
 	int					err;
+	int					fork_state;
 	t_philo				*philos;
 	t_simulation_state	*state;
 
 	err = init_simulation(&state, &philos, ac, av);
 	if (err)
 		return (err);
-	err = start_simulation(philos, state);
-	if (err)
+	fork_state = start_simulation(philos, state);
+	if (fork_state == -1)
 		write(2, "An error occured during simulation.\n", 36);
-	wait_philos(philos, state);
 	free_simulation(philos, state);
 }
 
