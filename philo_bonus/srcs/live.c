@@ -6,14 +6,17 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 11:30:28 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/24 23:29:11 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/05/03 11:47:48 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "simulation.h"
 
+#include <unistd.h>
+
 #include "ft_wait.h"
 
+static int	is_simulation_over(t_philo *philo);
 static void	wait_till_next_meal(t_philo *philo);
 
 void	*live(void *param)
@@ -21,14 +24,22 @@ void	*live(void *param)
 	t_philo	*philo;
 
 	philo = (t_philo *)param;
-	while (1)
+	while (!is_simulation_over(philo))
 	{
 		wait_till_next_meal(philo);
 		ph_eat(philo);
 		ph_sleep(philo);
 		ph_think(philo);
 	}
-	return (0);
+	sem_post(philo->state->end_simulation_lock);
+	while (1)
+		usleep(1000000);
+}
+
+static int	is_simulation_over(t_philo *philo)
+{
+	return (philo->state->pi.n_meals != -1
+		&& philo->n_meals >= philo->state->pi.n_meals);
 }
 
 static void	wait_till_next_meal(t_philo *philo)
