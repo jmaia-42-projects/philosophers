@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 18:12:53 by jmaia             #+#    #+#             */
-/*   Updated: 2022/11/27 16:35:49 by jmaia            ###   ###               */
+/*   Updated: 2022/11/27 17:17:47 by jmaia            ###   ###               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ static int	init_simulation(t_simulation_state **state, t_philo **philos,
 		return (err);
 	(*state)->end_simulation_lock = sem_open("/ph_end_simulation_lock",
 			O_CREAT, 0644, 0);
+	(*state)->start_simulation_lock = sem_open("/ph_start_simulation_lock",
+			O_CREAT, 0644, 0);
 	return (0);
 }
 
@@ -99,8 +101,10 @@ static void	free_simulation(t_philo	*philos, t_simulation_state *state)
 static void	close_sems(t_simulation_state *state)
 {
 	sem_unlink("/ph_end_simulation_lock");
+	sem_unlink("/ph_start_simulation_lock");
 	sem_unlink("/ph_forks");
 	sem_unlink("/ph_write_lock");
+	sem_close(state->start_simulation_lock);
 	sem_close(state->end_simulation_lock);
 	sem_close(state->forks);
 	sem_close(state->write_lock);

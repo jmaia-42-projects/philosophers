@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 20:06:10 by jmaia             #+#    #+#             */
-/*   Updated: 2022/05/03 12:08:59 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/11/27 20:16:03 by jmaia            ###   ###               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,14 @@ int	start_simulation(t_philo *philos, t_simulation_state *state)
 	int	pid;
 
 	i = 0;
-	set_ref_time();
 	pid = 0;
+	set_ref_time();
 	while (i < state->pi.n_philos && pid != -1)
 	{
 		pid = fork();
 		if (pid == 0)
 		{
+			sem_wait(state->start_simulation_lock);
 			live(&philos[i]);
 			break ;
 		}
@@ -39,6 +40,9 @@ int	start_simulation(t_philo *philos, t_simulation_state *state)
 			philos[i].pid = pid;
 		i++;
 	}
+	i = 0;
+	while (pid != 0 && i++ < state->pi.n_philos)
+		sem_post(state->start_simulation_lock);
 	return (pid);
 }
 
