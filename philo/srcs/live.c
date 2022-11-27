@@ -6,13 +6,15 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 11:30:28 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/24 23:39:30 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/11/27 15:47:47 by jmaia            ###   ###               */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "simulation.h"
 
 #include "ft_wait.h"
+
+#include <unistd.h>
 
 static int	is_simulation_over(t_philo *philo);
 static void	delay_start(t_philo *philo);
@@ -30,6 +32,7 @@ void	*live(void *param)
 		ph_eat(philo);
 		ph_sleep(philo);
 		ph_think(philo);
+		usleep(500);
 	}
 	return (0);
 }
