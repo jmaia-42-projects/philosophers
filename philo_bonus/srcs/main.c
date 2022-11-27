@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 18:12:53 by jmaia             #+#    #+#             */
-/*   Updated: 2022/05/03 12:09:28 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/11/27 16:35:49 by jmaia            ###   ###               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	main(int ac, char **av)
 	int					fork_state;
 	t_philo				*philos;
 	t_simulation_state	*state;
+	int					i;
 
 	err = init_simulation(&state, &philos, ac, av);
 	if (err)
@@ -40,6 +41,10 @@ int	main(int ac, char **av)
 	fork_state = start_simulation(philos, state);
 	if (fork_state == -1)
 		write(2, "An error occured during simulation.\n", 36);
+	i = 0;
+	if (fork_state != 0)
+		while (i++ < state->pi.n_philos)
+			sem_wait(state->end_simulation_lock);
 	free_simulation(philos, state);
 }
 
