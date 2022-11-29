@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:33:22 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/24 22:16:09 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/11/28 20:17:36 by jmaia            ###   ###               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,28 @@
 #include "did_philo_starve_to_death.h"
 #include "ft_wait.h"
 #include "utils.h"
+#include "timeval_ops.h"
 
 static void	set_nbr_and_move(char **str, unsigned long nbr);
 static void	set_nbr(char **str, unsigned long nbr);
 
 int	do_action(t_philo *philo, unsigned long duration, char *action)
 {
-	int	err;
+	int				err;
+	struct timeval	now;
+	struct timeval	raw_timestamp;
+	unsigned long	timestamp;
 
 	err = 0;
 	kill_philo_if_he_starve_to_death(philo);
 	sem_wait(philo->state->write_lock);
-	err = print_action(philo->timestamp, philo->id, action);
+	gettimeofday(&now, 0);
+	raw_timestamp = time_diff(now, philo->state->start);
+	timestamp = raw_timestamp.tv_usec / 1000 + raw_timestamp.tv_sec * 1000;
+	err = print_action(timestamp, philo->id, action);
 	sem_post(philo->state->write_lock);
 	philo->timestamp += duration;
-	ft_wait_ms_until(philo->timestamp, 0);
+	ft_wait_ms_until(philo, philo->timestamp, 0);
 	return (err);
 }
 

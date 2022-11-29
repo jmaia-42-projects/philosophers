@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 10:10:03 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/24 14:26:39 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/11/28 21:25:52 by jmaia            ###   ###               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_philo
 	int					n_meals;
 	t_simulation_state	*state;
 	unsigned long		timestamp;
+	sem_t				*last_eat_lock;
 }	t_philo;
 
 #endif

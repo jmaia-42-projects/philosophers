@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:33:22 by jmaia             #+#    #+#             */
-/*   Updated: 2022/11/27 15:37:46 by jmaia            ###   ###               */
+/*   Updated: 2022/11/28 23:51:00 by jmaia            ###   ###               */
 /*                                                                           */
 /* ************************************************************************** */
 
@@ -17,45 +17,48 @@
 #include "did_philo_starve_to_death.h"
 #include "ft_wait.h"
 #include "utils.h"
+#include "timeval_ops.h"
 
 static void	set_nbr_and_move(char **str, unsigned long nbr);
 static void	set_nbr(char **str, unsigned long nbr);
 
 int	do_action(t_philo *philo, unsigned long duration, char *action)
 {
-	int	err;
+	int				err;
+	struct timeval	now;
+	struct timeval	raw_timestamp;
+	unsigned long	timestamp;
 
 	err = 0;
 	kill_philo_if_he_starve_to_death(philo);
 	pthread_mutex_lock(&philo->state->is_simulation_over_lock);
+	gettimeofday(&now, 0);
+	raw_timestamp = time_diff(now, philo->state->start);
+	timestamp = raw_timestamp.tv_usec / 1000 + raw_timestamp.tv_sec * 1000;
 	if (!philo->state->is_simulation_over)
-		err = print_action(&philo->timestamp, philo->id, action);
+		err = print_action(timestamp, philo->id, action);
 	pthread_mutex_unlock(&philo->state->is_simulation_over_lock);
 	philo->timestamp += duration;
-	ft_wait_ms_until(philo->timestamp, 0);
+	ft_wait_ms_until(philo, philo->timestamp, 0);
 	return (err);
 }
 
-int	print_action(unsigned long *timestamp, unsigned int philo_i,
+int	print_action(unsigned long timestamp, unsigned int philo_i,
 				char *action)
 {
 	char					*cur_msg;
 	char					*msg;
 	int						len_timestamp;
 	int						len_philo_i;
-	static unsigned long	last_timestamp = 0;
 
-	last_timestamp = (last_timestamp > *timestamp) * last_timestamp
-		+ !(last_timestamp > *timestamp) * *timestamp;
-	*timestamp = last_timestamp;
-	len_timestamp = nbrlen(last_timestamp);
+	len_timestamp = nbrlen(timestamp);
 	len_philo_i = nbrlen(philo_i);
 	msg = malloc(sizeof(*msg) * (len_timestamp + len_philo_i + ft_strlen(action)
 				+ 2 + 1 + 1));
 	if (!msg)
 		return (1);
 	cur_msg = msg;
-	set_nbr_and_move(&cur_msg, last_timestamp);
+	set_nbr_and_move(&cur_msg, timestamp);
 	set_nbr_and_move(&cur_msg, philo_i);
 	ft_strcpy(cur_msg, action);
 	cur_msg[ft_strlen(action)] = '\n';

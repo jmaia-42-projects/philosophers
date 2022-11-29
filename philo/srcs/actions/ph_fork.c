@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 10:54:14 by jmaia             #+#    #+#             */
-/*   Updated: 2022/04/23 23:21:49 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/11/28 22:31:14 by jmaia            ###   ###               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void	wait_before_new_try(t_philo *philo, int *time_waited)
 	new_try.tv_sec = 0;
 	new_try.tv_usec = philo->timestamp * 1000;
 	new_try = sum(new_try, 200);
-	ft_wait_until(new_try, 0);
+	ft_wait_until(philo, new_try, 0);
 	*time_waited += 200;
 	if (*time_waited > 1000)
 	{
